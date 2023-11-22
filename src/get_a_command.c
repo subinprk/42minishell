@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 20:20:31 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/22 20:42:27 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_data	*extract_command(char *str)
 /*
 Subin's plan:
 
-One line of command can be consisted of multiple tiny command.
+One line of command can be consisted with multiple tiny command.
 So, extract_command function is from original string,
 and return linked list of commands.
 From string chopped by space,
