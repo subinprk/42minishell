@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 20:02:56 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/23 00:09:28 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_data
 //if there is another structure only for generating prompt.
 }	t_data;
 
-void	free_2d(char **arr)
+void	free_2d(char **arr);
 char	**paths_array(char **envp);
 void	program_command(t_data data, char **envp);
 void	act_p_command(t_data data, char **envp);

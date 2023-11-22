@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_a_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 20:42:27 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/23 00:25:15 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 
 #include "../include/minishell.h"
 
+void	check_built_in_command(char	**chopped_str, int *i, t_data *cmd_head)
+{
+	
+}
+
+void	check_redirection(char	**chopped_str, int *i, t_data *cmd_head)
+{
+	//if something is redirection
+	//add end node of t_data linkedlist(cmd_head)
+	//Subin: I think it access function(or sth else) can be used to check
+	//wheather it is file or not
+	
+	return ;
+}
+
 t_data	*lexicon_list_gen(char **chopped_str, int *i, t_data *cmd_head)
 {
 	if(!(*chopped_str))
 		return (NULL);
-	//check_file_dir();
+	//check_file_dir();_not sure about specific functions. just examples
 	//check_built_in_command();
 	//check_redirection();
 }
@@ -48,7 +63,7 @@ Subin's plan:
 
 One line of command can be consisted with multiple tiny command.
 So, extract_command function is from original string,
-and return linked list of commands.
+and return head of commands' linked list.
 From string chopped by space,
 check every single world to check it 
 
