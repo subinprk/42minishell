@@ -6,7 +6,7 @@
 #    By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/11/22 15:19:31 by irivero-         ###   ########.fr        #
+#    Updated: 2023/11/22 15:22:36 by irivero-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,14 @@ LIBS = libgnl.a
 LIBS_DIR = gnl
 LIBS_PATH = gnl/libgnl.a
 
+CFLAGS = -Wall -Werror -Wextra
+
 GREEN = \033[0;32m
 BLUE = \033[0;34m
 RESET = \033[0m
+
+CC = cc
+VALGRIND = @valgrind --leak-check=full
 
 SRCS_DIR = ./src/
 
