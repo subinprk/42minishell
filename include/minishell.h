@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 16:25:59 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:21:33 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <limits.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+# include "../gnl/get_next_line.h"
+# include "../gnl/ft_printf/ft_printf.h"
+# include "../gnl/ft_printf/libft/libft.h"
 
 typedef struct s_cmd 
 {
@@ -36,7 +35,18 @@ typedef struct s_data
 {
 	t_list	*lstlast;
 	t_cmd	*cmd;
+	s_data	*next;
 	char	*buf;
+	int		d_null;
+	char	*prompt;
+	int		current_index;
+	int		args_index;
+	int		args_count;
+	int		*args_size;
+	int		error;
+	char	quote;
+	char	**args_tmp;
+	char	**args;
 }	t_data;
 
 #endif
