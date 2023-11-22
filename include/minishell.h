@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 18:36:51 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:02:56 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 typedef struct s_cmd 
 {
-	char	**cmdline;
+	char	**cmdline;//should be the double array that can be used in execve func
 	int		flag;
 	char	quote;
 }	t_cmd;
@@ -37,6 +37,7 @@ typedef struct s_data
 	t_cmd	*cmd;
 	t_data	*next;
 	char	*buf;
+//
 	int		d_null;
 	char	*prompt;
 	int		current_index;
@@ -47,6 +48,17 @@ typedef struct s_data
 	char	quote;
 	char	**args_tmp;
 	char	**args;
+//Subin: I think some of them should be in different structure.
+//t_data is a storage for a command input,
+//it might be easier to understand
+//if there is another structure only for generating prompt.
 }	t_data;
+
+void	free_2d(char **arr)
+char	**paths_array(char **envp);
+void	program_command(t_data data, char **envp);
+void	act_p_command(t_data data, char **envp);
+void	do_pipe(t_data data, char **envp);
+void	exec(char **cmd, char **env);
 
 #endif

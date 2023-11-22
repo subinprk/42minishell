@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gen_child_pro.c                                    :+:      :+:    :+:   */
+/*   gen_child_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:46:48 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 18:05:46 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/22 19:03:22 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	act_p_command(t_data data, char **envp)
 	{
 		do_pipe(data, envp);
 	}
-	
-	
+	exec((data.cmd)->cmdline, envp);
 }
 
 void	program_command(t_data data, char **envp)
