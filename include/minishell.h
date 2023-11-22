@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 18:21:33 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:36:51 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 {
 	t_list	*lstlast;
 	t_cmd	*cmd;
-	s_data	*next;
+	t_data	*next;
 	char	*buf;
 	int		d_null;
 	char	*prompt;
