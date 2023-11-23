@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 02:38:23 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/23 03:34:30 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ typedef struct s_data
 }	t_data;
 
 void	free_2d(char **arr);
+int		array_length_2d(void **array);
 char	**paths_array(char **envp);
 void	program_command(t_data data, char **envp);
 void	act_p_command(t_data data, char **envp);
 void	do_pipe(t_data data, char **envp);
 void	exec(char **cmd, char **env);
+int		*token_data(char **chopped_str);
 
 #endif
