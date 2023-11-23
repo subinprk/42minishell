@@ -6,13 +6,13 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 00:25:15 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/23 02:35:07 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //redirector, pipe, will be in other lexicon
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	check_built_in_command(char	**chopped_str, int *i, t_data *cmd_head)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gen_child_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:46:48 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 19:03:22 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/23 02:35:01 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	act_p_command(t_data data, char **envp)
 {
