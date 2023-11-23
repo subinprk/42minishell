@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 03:55:05 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/23 14:03:32 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <errno.h>
 # include <limits.h>
+# include <signal.h>
 
 # include "../gnl/get_next_line.h"
 # include "../gnl/ft_printf/ft_printf.h"
@@ -63,5 +64,22 @@ void	act_p_command(t_data data, char **envp);
 void	do_pipe(t_data data, char **envp);
 void	exec(char **cmd, char **env);
 int		*token_data(char **chopped_str);
+
+
+// generate_prompt.c
+void	generate_prompt(void);
+int		read_from_stdin(char **buf);
+int		get_line(char **line);
+
+// parser.c
+int        is_whitespace(char *c);
+
+
+// utils.c
+char	*ft_strnew(size_t size);
+
+// handle_signal.c
+void    handle_signal(int sign);
+void	set_signal(void);
 
 #endif
