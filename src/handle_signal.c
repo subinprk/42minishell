@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:23:06 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/23 13:30:36 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:04:21 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    handle_signal(int sign)
         {
 			ft_putstr_fd("\n", 1);
 			generate_prompt();
-			g_exit = 1;;
+			g_exit_status = 1;;
     	}
 		else
 			ft_putstr_fd("\n", 1);
