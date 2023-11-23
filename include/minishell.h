@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 14:03:32 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:56:56 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 	t_data	*next;
 	char	*buf;
 //
-	int		d_null;
+/*	int		d_null;
 	char	*prompt;
 	int		current_index;
 	int		args_index;
@@ -48,7 +48,7 @@ typedef struct s_data
 	int		error;
 	char	quote;
 	char	**args_tmp;
-	char	**args;
+	char	**args;*/
 //Subin: I think some of them should be in different structure.
 //t_data is a storage for a command input,
 //it might be easier to understand
