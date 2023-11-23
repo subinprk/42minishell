@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:09:34 by irivero-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:59:54 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:47:10 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*get_wstr(int fd, char *wstr);
 char	*get_wbuffer(char *wstr);
 char	*get_strrst(char *wstr);
 char	*get_next_line(int fd);
+char	*get_wstr_stdin(char *wstr);
 char	*ft_strjoin_frees1(char *s1, char *s2);
 char	*ft_strchr_gnl(char *s, int c);
 size_t	ft_strlen_gnl(char const *str);

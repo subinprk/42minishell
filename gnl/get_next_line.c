@@ -6,12 +6,14 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:11:29 by irivero-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:58:31 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:46:55 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+
+static int	stdin_fd = 0;
 
 char	*get_wstr(int fd, char *wstr)
 {
@@ -102,7 +104,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	if ((wstr && !ft_strchr_gnl(wstr, '\n')) || !wstr)
-		wstr = get_wstr(fd, wstr);
+	{        if (fd != stdin_fd)
+            wstr = get_wstr(fd, wstr);
+        else
+            wstr = get_wstr_stdin(wstr);
+	}
 	if (!wstr)
 	{
 		wstr = NULL;
@@ -120,4 +126,9 @@ char	*get_next_line(int fd)
 	if (!wstr)
 		free(wstr);
 	return (wbuffer);
+}
+
+char	*get_wstr_stdin(char *wstr)
+{
+	return (get_wstr(0, wstr));
 }
