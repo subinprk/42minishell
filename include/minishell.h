@@ -6,12 +6,19 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 14:56:56 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:01:30 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# define TOK_WORD 1
+# define TOK_PIPE 2
+# define TOK_RELLOCATE 3
+# define TOK_S_QUOTE 4
+# define TOK_D_QUOTE 5
+# define TOK_NULL_HANDLE 0
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>

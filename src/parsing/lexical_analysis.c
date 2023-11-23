@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   give_a_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 02:36:57 by siun              #+#    #+#             */
-/*   Updated: 2023/11/23 03:36:31 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/23 16:01:32 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-#define TOK_PIPE 0
-#define TOK_RELLOCATE 1
-#define TOK_CMD_MAIN 2
-#define TOK_CMD_FLAG 3
-#define TOK_S_QUOTE 4
-#define TOK_D_QUOTE 5
-#define TOK_D_FILE 6
-#define TOK_NULL_HANDLE -1
 
 int	is_it_same(char *str1, char *str2)
 {
@@ -33,7 +24,6 @@ int	is_it_same(char *str1, char *str2)
 		i ++;
 	}
 	return (1);
-
 }
 
 int	is_it_rellocater(char *str)
@@ -50,22 +40,18 @@ int	is_it_rellocater(char *str)
 		return (0);
 }
 
-int	is_it_cmd_main(char *str)
-{
-
-}
-
 int	allocate_token(char *str)
 {
 	if (is_it_same(str, "|"))
 		return (TOK_PIPE);
 	else if (is_it_rellocater(str))
 		return (TOK_RELLOCATE);
-	else if (is_it_cmd_main(str))
-		return (TOK_CMD_MAIN);
-	else if (str[0] == '-')
-		return (TOK_CMD_FLAG);
-	//else if (is_it_same(str, )) not sure about the case quotation mark adjacent with other lexicon
+	else if (is_it_same(str, "\'"))
+		return (TOK_S_QUOTE);
+	else if (is_it_same(str, "\""))
+		return (TOK_D_QUOTE);
+	else
+		return (TOK_WORD);
 }
 
 int	*token_data(char **chopped_str)
