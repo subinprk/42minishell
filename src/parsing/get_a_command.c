@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 03:37:39 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/23 03:55:41 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_data	*extract_command(char *str)
 	token = token_data(chopped_str);
 	if (!token)
 		return (NULL);
+	//function that parsing token & generate cmd linked list
 	free_2d(chopped_str);
 	free(token);
 	return (cmd_data);

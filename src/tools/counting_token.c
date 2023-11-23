@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokens.c                                     :+:      :+:    :+:   */
+/*   counting_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/23 03:59:06 by siun             ###   ########.fr       */
+/*   Created: 2023/11/23 03:45:22 by siun              #+#    #+#             */
+/*   Updated: 2023/11/23 03:54:50 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
-
-t_data *parse_tokens(t_data *cmd_data, char **chopped_str, int *token)
+int	count_token(int *token, int token_identifier)
 {
-    //if ()
-    //quote, dquote error handling, if it's number is odd, also read next line
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (token[i] != -1)
+	{
+		if (token[i] == token_identifier)
+			count ++;
+		i ++;
+	}
+	return (count);
 }
