@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 16:01:30 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/24 15:45:22 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ typedef struct s_data
 {
 	t_list	*lstlast;
 	t_cmd	*cmd;
-	t_data	*next;
+//	t_data	*next;
+//	t_data	*parent_node;
+	t_data	*left_child;
+	t_data	*right_child;
 	char	*buf;
 //
 /*	int		d_null;
