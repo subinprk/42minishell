@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 18:12:22 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/25 18:14:46 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node)
 
 void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node)
 {
-	//int	index_redirection;
-
 	node = generate_tree_node(NODE_SIMPLE_REDIRECT);
-	//index_redirection = find_redirection(token, i);
 	node->left_child = generate_end_node(cmd_line, NODE_RED_TYPE,
 						i[0], i[0] + 1);
 	node->right_child = generate_file_name_node(cmd_line, NODE_FILE_NAME,

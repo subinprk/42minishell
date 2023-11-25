@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/25 17:31:13 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/25 18:17:06 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define NODE_FILE_PATH 4
 # define NODE_ARGV 5
 # define NODE_REDIRECTS 6
-# define NODE_REDIRECT 7
+# define NODE_SIMPLE_REDIRECT 7
 # define NODE_RED_TYPE 8
 # define NODE_FILE_NAME 9
 # define NODE_NULL_HANDLE 0
@@ -89,9 +89,9 @@ void	free_2d(char **arr);
 int		array_length_2d(void **array);
 int		count_token(int *token, int token_identifier);
 char	**paths_array(char **envp);
-void	program_command(t_data data, char **envp);
-void	act_p_command(t_data data, char **envp);
-void	do_pipe(t_data data, char **envp);
+//void	program_command(t_data data, char **envp);
+//void	act_p_command(t_data data, char **envp);
+//void	do_pipe(t_data data, char **envp);
 void	exec(char **cmd, char **env);
 int		*token_data(char **chopped_str);
 
