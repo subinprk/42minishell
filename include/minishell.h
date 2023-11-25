@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/25 16:50:29 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/25 17:31:13 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ typedef struct s_cmd
 	int		flag;
 	char	quote;
 }	t_cmd;*/
-
+/*
 typedef struct s_data
 {
 //	t_list	*lstlast;
 //	t_cmd	*cmd;
 //	t_data	*next;
 //	t_data	*parent_node;
-	t_data	*left_child;
-	t_data	*right_child;
-	char	*buf;
+	struct s_data	*left_child;
+	struct s_data	*right_child;
+	char	*buf;*/
 //
 /*	int		d_null;
 	char	*prompt;
@@ -74,16 +74,16 @@ typedef struct s_data
 //t_data is a storage for a command input,
 //it might be easier to understand
 //if there is another structure only for generating prompt.
-}	t_data;
+//}	t_data;
 
-typedef struct s_cmd_tree
+typedef struct s_cmd
 {
-	struct s_cmd_tree	*left_child;
-	struct s_cmd_tree	*right_child;
-	char				*cmdstr;
+	struct s_cmd	*left_child;
+	struct s_cmd	*right_child;
+	char				**cmdstr;
 //	int					token;
 	int					node_type;
-}	t_cmd_tree;
+}	t_cmd;
 
 void	free_2d(char **arr);
 int		array_length_2d(void **array);
@@ -107,8 +107,8 @@ int        is_whitespace(char *c);
 
 // utils.c
 char	*ft_strnew(size_t size);
-int		find_pipe(int *token, i);
-int		find_redirection(int *token, i);
+int		find_pipe(int *token, *i);
+int		find_redirection(int *token, *i);
 
 
 // handle_signal.c

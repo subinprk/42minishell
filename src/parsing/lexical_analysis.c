@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   give_a_token.c                                     :+:      :+:    :+:   */
+/*   lexical_analysis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 02:36:57 by siun              #+#    #+#             */
-/*   Updated: 2023/11/23 16:01:32 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/25 16:52:08 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	allocate_token(char *str)
 	if (is_it_same(str, "|"))
 		return (TOK_PIPE);
 	else if (is_it_rellocater(str))
-		return (TOK_RELLOCATE);
+		return (TOK_REDIRET);
 	else if (is_it_same(str, "\'"))
 		return (TOK_S_QUOTE);
 	else if (is_it_same(str, "\""))

@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_token_existence.c                            :+:      :+:    :+:   */
+/*   copy_2d_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 14:00:00 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 18:04:38 by siun             ###   ########.fr       */
+/*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
+/*   Updated: 2023/11/25 17:45:19 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	find_existence(int *token, int target, int *i)
+char	**text_array_part_cpy(char **line, int start, int end)
 {
-	int	count;
+	int		i;
+	char	**part;
 
-	count = i[0];
-	while (count < i[1])
+	part = (char **)malloc((sizeof(char *)) * (end - start + 1));
+	i = 0;
+	while (i < end - start)
 	{
-		if (token[count] == target)
-			return (count);
-		count ++;
+		ft_strlcpy(part[i], line[start + i], ft_strlen(line[start + i]));
+		if (!part[i])
+			exit(errno);
+		i ++;
 	}
-	return (-1);
-}
-
-int	find_pipe(int *token, int *i)
-{
-	return (find_existence(token, TOK_PIPE, i));
-}
-
-int	find_redirection(int *token, int *i)
-{
-	return (find_existence(token, TOK_REDIRET, i));
+	part[i] = NULL;
+	return (part);
 }

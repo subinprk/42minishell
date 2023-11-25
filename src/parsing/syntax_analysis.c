@@ -6,19 +6,19 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 16:49:46 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/25 18:12:22 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd_tree *node)
+void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node)
 {
 	int	pipe_index;
 	int	tmp;
 
 	tmp = i[1];
-	node = generate_tree_node();
+	node = generate_tree_node(NODE_CMD);
 	pipe_index = find_pipe(token, i);;
 	if (pipe_index != -1)
 		i[1] = pipe_index;
@@ -31,13 +31,13 @@ void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd_tree *node)
 	}
 }
 
-void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd_tree *node)
+void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node)
 {
 	int	redirect_index;
 	int	tmp;
 
 	tmp = i[1];
-	node = generate_tree_node();
+	node = generate_tree_node(NODE_REDIRECTS);
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
@@ -50,14 +50,14 @@ void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd_tree *node)
 	}
 }
 
-void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd_tree *node)
+void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node)
 {
-	node = generate_tree_node();
-	node->right_child = generate_file_path_node();
-	node->left_child = generate_argv_node();
+	node = generate_tree_node(NODE_SIMPLE_CMD);
+	node->left_child = generate_file_path_node(cmd_line, NODE_FILE_PATH, i[0],);
+	node->right_child = generate_argv_node();
 }
 
-void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd_tree *node)
+void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node)
 {
 	int	redirect_index;
 	int	tmp;
@@ -75,9 +75,14 @@ void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd_tree *node)
 	}
 }
 
-void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd_tree *node)
+void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node)
 {
-	node = generate_tree_node();
-	node->right_child = generate_redir_type_node();
-	node->left_child = generate_file_name_node();
+	//int	index_redirection;
+
+	node = generate_tree_node(NODE_SIMPLE_REDIRECT);
+	//index_redirection = find_redirection(token, i);
+	node->left_child = generate_end_node(cmd_line, NODE_RED_TYPE,
+						i[0], i[0] + 1);
+	node->right_child = generate_file_name_node(cmd_line, NODE_FILE_NAME,
+						i[0] + 1, i[1]);
 }
