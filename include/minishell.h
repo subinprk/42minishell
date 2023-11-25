@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/25 14:24:03 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/25 16:50:29 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@
 # define TOK_S_QUOTE 4
 # define TOK_D_QUOTE 5
 # define TOK_NULL_HANDLE 0
+
+# define NODE_PIPE 1
+# define NODE_CMD 2
+# define NODE_SIMPLE_CMD 3
+# define NODE_FILE_PATH 4
+# define NODE_ARGV 5
+# define NODE_REDIRECTS 6
+# define NODE_REDIRECT 7
+# define NODE_RED_TYPE 8
+# define NODE_FILE_NAME 9
+# define NODE_NULL_HANDLE 0
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -31,13 +42,13 @@
 # include "../gnl/get_next_line.h"
 # include "../gnl/ft_printf/ft_printf.h"
 # include "../gnl/ft_printf/libft/libft.h"
-
+/*
 typedef struct s_cmd 
 {
 	char	**cmdline;//should be the double array that can be used in execve func
 	int		flag;
 	char	quote;
-}	t_cmd;
+}	t_cmd;*/
 
 typedef struct s_data
 {
@@ -70,6 +81,8 @@ typedef struct s_cmd_tree
 	struct s_cmd_tree	*left_child;
 	struct s_cmd_tree	*right_child;
 	char				*cmdstr;
+//	int					token;
+	int					node_type;
 }	t_cmd_tree;
 
 void	free_2d(char **arr);
