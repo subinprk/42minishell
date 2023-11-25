@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/24 16:24:52 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:20:01 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ t_data	*parse_tokens(t_data *cmd_data, char **chopped_str, int *token)
 
 void	syntax_pipe(char **cmd_part, int *token, int i)
 {
-	syntax_cmds();
-	if (/*there is more pipe*/)
-		syntax_pipe(cmd_part, token, /*next pipe index*/);
+	int	pipe_index;
+
+	syntax_cmds(cmd_part, token, i);
+	pipe_index = find_pipe(token);
+	if (pipe_index != -1)
+		syntax_pipe(cmd_part, token, pipe_index);
 }
 
 void	syntax_cmds(char **cmd_part, int *token, int i)
 {
 	syntax_simple_cmd();
-	if (/*there is redirections*/)
+	if (find_redirection(token) != -1)
 		syntax_redirects(cmd_part, token, /*redirection index*/);
 }
 
@@ -37,11 +40,14 @@ void	syntax_simple_cmd()
 
 }
 
-void	syntax_redirects()
+void	syntax_redirects(char **cmd_part, int *token, int i)
 {
+	int	redirect_index;
+
 	syntax_simple_redirect();
-	if (/*there is more redirects*/)
-		syntax_redirects(cmd_part, token, /*next redirection index*/);
+	redirect_index = find_redirection(token);
+	if (redirect_index != -1)
+		syntax_redirects(cmd_part, token,redirect_index);
 }
 
 void	syntax_simple_redirect()

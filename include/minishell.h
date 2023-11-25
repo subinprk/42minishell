@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/24 15:45:22 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/25 13:55:38 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	t_list	*lstlast;
-	t_cmd	*cmd;
+//	t_list	*lstlast;
+//	t_cmd	*cmd;
 //	t_data	*next;
 //	t_data	*parent_node;
 	t_data	*left_child;
@@ -64,6 +64,13 @@ typedef struct s_data
 //it might be easier to understand
 //if there is another structure only for generating prompt.
 }	t_data;
+
+typedef struct s_cmd_tree
+{
+	struct s_cmd_tree	*left_child;
+	struct s_cmd_tree	*right_child;
+	char				*cmdstr;
+}	t_cmd_tree;
 
 void	free_2d(char **arr);
 int		array_length_2d(void **array);
