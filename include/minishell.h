@@ -5,9 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:37 by subpark          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/11/27 17:37:40 by subpark          ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
@@ -112,8 +114,13 @@ int        is_whitespace(char *c);
 
 // utils.c
 char	*ft_strnew(size_t size);
-int		find_pipe(int *token, *i);
-int		find_redirection(int *token, *i);
+char	*find_value(char *key, char **envs);
+int 	print_error(char *token, char *message);
+int 	print_error2(char *token, char *token2, char *message);
+
+
+int		find_pipe(int *token, int *i);
+int		find_redirection(int *token, int *i);
 
 
 // handle_signal.c
