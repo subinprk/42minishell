@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:27:27 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 17:29:00 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:46:38 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	execute_simple_redirect(t_cmd *node, char **envp)
 	int		type;
 
 	type = redirect_type(node->left_child);
-	if (type == REL)
+	if (type == REL_TYPE_L)
+		//////////stopped here
 }
 
 void	execute_tree(t_cmd *node, char **envp)
