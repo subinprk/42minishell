@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 15:05:57 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 15:13:38 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*line_by_line(char *str, int *i)
 		if (str[*i] == ' ')
 			*i ++;
 		else if (str[*i] == '\'')
-			return (ft_strdup("'"));//curious if it is possible just send strdup directly as return value
+			return (ft_strdup("'"));//not sure if it is possible just send strdup directly as return value
 		else if (str[*i] == '"')
 			return (ft_strdup("\""));
 		else if (str[*i] == '|')

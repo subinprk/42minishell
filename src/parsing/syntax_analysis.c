@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/27 13:21:06 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 15:37:39 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node)
 void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node)
 {
 	node = generate_tree_node(NODE_SIMPLE_CMD);
-	node->left_child = generate_end_node(cmd_line, NODE_FILE_PATH, i[0],i[0] + 1);
+	node->left_child = generate_end_node(cmd_line, NODE_FILE_PATH, i[0], i[0] + 1);
 	node->right_child = generate_end_node(cmd_line, NODE_ARGV, i[0], i[1]);
 }
 

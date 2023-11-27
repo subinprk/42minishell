@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool4choppin.c                                     :+:      :+:    :+:   */
+/*   chopping_str_tool.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 15:11:13 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 15:35:12 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ char	*strdup_rellocator(char *str, int *i)
 
 char	*strdup_word(char *str, int *i)
 {
-	while (str[*i])
-	{
-		
-	}
+	char	*word;
+	int		word_length;
+
+	word_length = count_word_length(str, *i);
+	word = (char *)malloc(sizeof(char) * (word_length + 1));
+	putting_words(&word, str, *i, word_length);
+	return (word);
 }
