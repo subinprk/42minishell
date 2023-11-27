@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "minishell.h": "c",
+        "ft_printf.h": "c",
+        "errno.h": "c",
+        "limits.h": "c",
+        "libft.h": "c",
+        "get_next_line.h": "c"
+    }
+}

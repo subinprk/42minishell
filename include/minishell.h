@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/25 18:17:06 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/27 17:33:37 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define NODE_RED_TYPE 8
 # define NODE_FILE_NAME 9
 # define NODE_NULL_HANDLE 0
+
+# define REL_TYPE_R 1
+# define REL_TYPE_RR 2
+# define REL_TYPE_L 3
+# define REL_TYPE_LL 4
 
 # include <stdlib.h>
 # include <unistd.h>

@@ -6,46 +6,60 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:27:27 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 16:57:56 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:29:00 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	execute_pipe()
+void	execute_pipe(t_cmd *node, char **envp)
 {
+	pid_t	pid;
+	int		fd[2];
+	int		pipefd[2];
+	int		type;
 
 }
 
-void	execute_simple_cmd()
+void	execute_simple_cmd(t_cmd *node, char **envp)
 {
+	pid_t	pid;
+	int		fd[2];
+	int		pipefd[2];
+	int		type;
 
 }
 
-void	execute_simple_redirect()
+void	execute_simple_redirect(t_cmd *node, char **envp)
 {
+	pid_t	pid;
+	int		fd[2];
+	int		pipefd[2];
+	int		type;
 
+	type = redirect_type(node->left_child);
+	if (type == REL)
 }
 
-void	execute_tree(t_cmd *node)
+void	execute_tree(t_cmd *node, char **envp)
 {
 	if (node->node_type == NODE_CMD || node->node_type == NODE_REDIRECTS)
 		return ;
 	else if (node->node_type == NODE_PIPE)
-		execute_pipe();
+		execute_pipe(node, envp);
 	else if (node->node_type == NODE_SIMPLE_CMD)
-		execute_simple_cmd();
+		execute_simple_cmd(node, envp);
 	else if (node->node_type == NODE_SIMPLE_REDIRECT)
-		execute_simple_redirect();
+		execute_simple_redirect(node, envp);
 }
 
-void	search_tree(t_cmd *node)
+void	search_tree(t_cmd *node, char **envp)
 {
-	execute_tree(node);
-	if (node->left_child != NODE_RED_TYPE ||
-		node->left_child != NODE_FILE_PATH)
-		search_tree(node->left_child);
-	if (node->right_child != NODE_FILE_NAME ||
-		node->right_child != NODE_ARGV)
-		search_tree(node->right_child);
+	execute_tree(node, envp);
+	if ((node->left_child != NODE_RED_TYPE ||
+		node->left_child != NODE_FILE_PATH) && node->left_child)
+		search_tree(node->left_child, envp);
+	if ((node->right_child != NODE_FILE_NAME ||
+		node->right_child != NODE_ARGV) && node->right_child)
+		search_tree(node->right_child, envp);
 }
