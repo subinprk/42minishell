@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_2d_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 17:45:19 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/27 14:30:29 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**text_array_part_cpy(char **line, int start, int end)
 	i = 0;
 	while (i < end - start)
 	{
-		ft_strlcpy(part[i], line[start + i], ft_strlen(line[start + i]));
+		part[i] = ft_strdup(line[start + i]);
 		if (!part[i])
 			exit(errno);
 		i ++;

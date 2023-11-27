@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_a_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 03:55:41 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/27 13:32:00 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include "../../include/minishell.h"
 
-t_data	*extract_command(char *str)
+t_cmd	*extract_command(char *str)
 {
-	t_data	*cmd_data;
+	t_cmd	*cmd_tree;
 	char	**chopped_str;
 	int		*token;
 
-	cmd_data = NULL;
+	cmd_tree = NULL;
 	chopped_str = ft_split(str, ' ');
 	if (!chopped_str)
 		return (NULL);
@@ -32,14 +32,3 @@ t_data	*extract_command(char *str)
 	free(token);
 	return (cmd_data);
 }
-
-/*
-Subin's plan:
-
-One line of command can be consisted with multiple tiny command.
-So, extract_command function is from original string,
-and return head of commands' linked list.
-From string chopped by space,
-check every single world to check it 
-
-*/
