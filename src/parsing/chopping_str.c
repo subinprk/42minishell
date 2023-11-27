@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 15:13:38 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:07:49 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,19 @@ char	**chopping_str(char *str)
 	int		index;
 
 	chopped = (char **)malloc(sizeof(char *) * count_line(str) + 1);
+	if (!chopped)
+		return (NULL);
 	i = 0;
 	index = 0;
 	while (str[i])
 	{
 		chopped[index] = line_by_line(str, &i);
+		if (!chopped[index])
+		{
+			free_2d(chopped);
+			return (NULL);
+		}
 		i ++;
 	}
+	return (chopped);
 }

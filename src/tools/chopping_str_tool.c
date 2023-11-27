@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:12 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:08:26 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ char	*strdup_word(char *str, int *i)
 
 	word_length = count_word_length(str, *i);
 	word = (char *)malloc(sizeof(char) * (word_length + 1));
+	if (!word)
+		return (NULL);
 	putting_words(&word, str, *i, word_length);
+	(*i) = (*i) + word_length;
 	return (word);
 }
