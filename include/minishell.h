@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:24:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/25 18:17:06 by siun             ###   ########.fr       */
+/*   Updated: 2023/11/27 17:19:15 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,13 @@ int        is_whitespace(char *c);
 
 // utils.c
 char	*ft_strnew(size_t size);
-int		find_pipe(int *token, *i);
-int		find_redirection(int *token, *i);
+char    *find_value(char *key, char **envs);
+int 	print_error(char *token, char *message);
+int 	print_error2(char *token, char *token2, char *message);
+
+
+int		find_pipe(int *token, int *i);
+int		find_redirection(int *token, int *i);
 
 
 // handle_signal.c
