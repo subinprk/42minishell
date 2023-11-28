@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:27:27 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 17:46:38 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/28 15:50:06 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,67 @@
 void	execute_pipe(t_cmd *node, char **envp)
 {
 	pid_t	pid;
-	int		fd[2];
 	int		pipefd[2];
-	int		type;
 
+	if (pipe(pipefd) == -1)
+		return (perror("Pipe: "));
+	pid = fork();
+	if (pid < 0)
+		return (perror("Fork: "));
+	else if (pid == 0)
+	{
+
+	}
+	else
+	{
+		waitpid(pid, NULL, WNOHANG);
+		//connect_command(pipefd, envp);
+	}
 }
 
 void	execute_simple_cmd(t_cmd *node, char **envp)
 {
 	pid_t	pid;
-	int		fd[2];
 	int		pipefd[2];
-	int		type;
 
+	if (pipe(pipefd) == -1)
+		return (perror("Pipe: "));
+	pid = fork();
+	if (pid < 0)
+		return (perror("Fork: "));
+	else if (pid == 0)
+	{
+
+	}
+	else
+	{
+		waitpid(pid, NULL, WNOHANG);
+		//connect_command(pipefd, envp);
+	}
 }
 
 void	execute_simple_redirect(t_cmd *node, char **envp)
 {
 	pid_t	pid;
-	int		fd[2];
 	int		pipefd[2];
 	int		type;
 
-	type = redirect_type(node->left_child);
-	if (type == REL_TYPE_L)
-		//////////stopped here
+	if (pipe(pipefd) == -1)
+		return (perror("Pipe: "));
+	pid = fork();
+	if (pid < 0)
+		return (perror("Fork: "));
+	else if (pid == 0)
+	{
+		type = redirect_type(node->left_child);
+		redirect_connect(type, node->right_child, pipefd);
+	}
+	else
+	{
+		waitpid(pid, NULL, WNOHANG);
+		connect_command(pipefd, envp);
+	}
 }
-
 void	execute_tree(t_cmd *node, char **envp)
 {
 	if (node->node_type == NODE_CMD || node->node_type == NODE_REDIRECTS)
