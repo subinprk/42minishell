@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:56:35 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/27 17:18:31 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:21:01 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char    *ft_strnew(size_t size)
     return (str);
 }
 
-char    *find_value(char *key, char **envs)
+char    *get_env_value(char *key, char **envs)
 {
     int        i;
     char    *value;

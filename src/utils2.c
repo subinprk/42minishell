@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 15:59:47 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:22:08 by irivero-         ###   ########.fr       */
+/*   Created: 2023/11/28 11:14:48 by irivero-          #+#    #+#             */
+/*   Updated: 2023/11/28 11:16:37 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-extern int g_exit_status;
-
-void    exit_err(void)
+int        remove_char(char *str, char c)
 {
-	ft_putstr_fd("exit\n", 1);
-	exit(g_exit_status);
-}
+    int i;
+    int j;
 
-void    exit1(t_cmd *cmd, char **cmdline)
-{
-    
+    i = 0;
+    j = 0;
+    while (str[i])
+    {
+        if (str[i] != c)
+            str[j++] = str[i];
+        i++;
+    }
+    str[j] = 0;
+    return (1);
 }

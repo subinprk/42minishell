@@ -6,11 +6,13 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:23:06 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/27 17:20:01 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:46:31 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+extern int g_exit_status; 
 
 /*Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.*/
 void    handle_signal(int sign)

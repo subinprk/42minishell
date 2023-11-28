@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/11/27 17:37:40 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/28 11:22:04 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int        is_whitespace(char *c);
 
 // utils.c
 char	*ft_strnew(size_t size);
-char	*find_value(char *key, char **envs);
+char	*get_env_value(char *key, char **envs);
 int 	print_error(char *token, char *message);
 int 	print_error2(char *token, char *token2, char *message);
 

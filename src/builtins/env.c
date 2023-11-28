@@ -6,14 +6,15 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:43:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/27 17:20:58 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:22:10 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*
-takes an array of strings representing comand-line args.
+extern int g_exit_status;
+
+/*takes an array of strings representing comand-line args.
 It iterates through the array and prints each element on a new line*/
 void    env(char **args)
 {

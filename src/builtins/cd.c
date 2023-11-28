@@ -6,11 +6,13 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:52 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/27 16:32:24 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:21:39 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minishell.h"
+#include "../../include/minishell.h"
+
+extern int g_exit_status;
 
 //changes the current working directory to the user's home directory
 int	cd_to_home_directory(char *current_path, char **cmdline, char **envs)
@@ -22,7 +24,7 @@ int	cd_to_home_directory(char *current_path, char **cmdline, char **envs)
 		g_exit_status = 1;
 	}
 	//get the value of the HOME variable
-	current_path = find_value("HOME", envs);
+	current_path = get_env_value("HOME", envs);
 	//change the current working directory to the value of the HOME variable
 	if (chdir(current_path) == -1)
 		print_error("cd", "HOME not set");
