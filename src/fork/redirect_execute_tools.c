@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:13:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/28 18:16:50 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/29 14:22:29 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	redirect_l_connect(int re_type, t_cmd *file_name, int *pipefd)
 			close_two_exit(pipefd[0], pipefd[1]);
 		re_type_l_pipes(fd, pipefd);
 	}
-	else if (re_type == REL_TYPE_LL)
+	else if (re_type == REL_TYPE_LL)//have to make heredoc
 	{
 		filefd = open(file_name->cmdstr[0], O_CREAT | O_RDWR, 0666);
 		if (!filefd)
