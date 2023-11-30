@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:51:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 20:03:41 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:32:13 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		check_builtin(t_cmd *file_path)
 	else
 		return (0);
 }
-
+/*
 void	simple_cmd(t_cmd *cmd, char **envp)
 {
 	int		pipefd[2];
@@ -100,4 +100,4 @@ void	simple_cmd(t_cmd *cmd, char **envp)
 		waitpid(pid, NULL, WNOHANG);
 		simple_cmd_connect(pipefd);
 	}
-}
+}*/

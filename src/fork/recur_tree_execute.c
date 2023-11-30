@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:27:27 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 20:24:59 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:34:20 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,27 @@ void	execute_pipe(t_cmd *node, char **envp)
 	}
 }
 
-void	execute_simple_cmd(t_cmd *node, char **envp)
+//subin :maybe it could be better not to do fork for simple cmd, let's see later
+void	execute_simple_cmd(t_cmd *cmd, char **envp)
 {
-	pid_t	pid;
 	int		pipefd[2];
+	int		builtin;
+	pid_t	pid;
 
+	builtin = check_builtin(cmd->left_child);
+	if (!builtin)
+		print_error_cmd(cmd->left_child, envp);
 	if (pipe(pipefd) == -1)
 		return (perror("Pipe: "));
 	pid = fork();
 	if (pid < 0)
 		return (perror("Fork: "));
 	else if (pid == 0)
-	{
-
-	}
+		simple_cmd_action(cmd, pipefd, builtin, envp);
 	else
 	{
 		waitpid(pid, NULL, WNOHANG);
-		//connect_command(pipefd, envp);
+		simple_cmd_connect(pipefd);
 	}
 }
 
