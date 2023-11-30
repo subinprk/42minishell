@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:51:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 18:05:19 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:03:41 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,26 @@ void	builtin_action(t_cmd *builtin, char **envp)
 		;
 	if (builtin->cmdstr[0] == "env")
 		;
-	if (builtin->cmdstr[0] == )
+	if (builtin->cmdstr[0] == "exit")
+		;
 }
 
-void	simpe_cmd_action(t_cmd *cmd, int *pipefd, int builtin, char **envp)
+void	simple_cmd_action(t_cmd *cmd, int *pipefd, int builtin, char **envp)
 {
 	int	fd[2];
 
 	fd[0] = 0;
 	fd[1] = dup2(pipefd[1], 1);
+	if (fd[1] == -1)
+	{
+		close(fd[0]);
+		close(fd[1]);
+		close(pipefd[0]);
+		return ;
+	}
+	close(pipefd[0]);
 	if (builtin)
-		builtin_action(cmd->right_child);
+		builtin_action(cmd->right_child, envp);
 	else
 		execve(cmd->right_child->cmdstr[0], cmd->left_child->cmdstr, envp);
 	exit(errno);
@@ -44,7 +53,19 @@ void	simpe_cmd_action(t_cmd *cmd, int *pipefd, int builtin, char **envp)
 
 void	simple_cmd_connect(int *pipefd)
 {
+	int	fd[2];
 
+	fd[0] = dup2(pipefd[0], 0);
+	fd[1] = 1;//meaningless
+
+	if (fd[0] == -1)
+	{
+		close(fd[0]);
+		close(fd[1]);
+		close(pipefd[1]);
+		exit(errno);
+	}
+	close(pipefd[1]);
 }
 
 int		check_builtin(t_cmd *file_path)
@@ -77,6 +98,6 @@ void	simple_cmd(t_cmd *cmd, char **envp)
 	else
 	{
 		waitpid(pid, NULL, WNOHANG);
-		simple_cmd_connect();
+		simple_cmd_connect(pipefd);
 	}
 }
