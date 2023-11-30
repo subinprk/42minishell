@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_heredoc.c                                 :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 14:09:26 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 15:15:05 by subpark          ###   ########.fr       */
+/*   Created: 2023/11/30 14:41:28 by subpark           #+#    #+#             */
+/*   Updated: 2023/11/30 14:43:15 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	heredoc_input(int filefd, char *word)
+int	ft_strcmp(char *s1, char *s2)
 {
-	char	*line;
+	int	i;
 
-	line = readline("heredoc> ");
-	while (ft_strcmp(line, word) != 0)
+	i = 0;
+	while (s1[i] | s2[i])
 	{
-		write(filefd, line, ft_strlen(line));
-		write(filefd, "\n", 1);
-		free(line);
-		line = readline("heredoc> ");
+		if (s1[i] == s2[i])
+			i ++;
+		else
+			return (s1[i] - s2[i]);
 	}
-	free(line);
+	return (0);
 }
