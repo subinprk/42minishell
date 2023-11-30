@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:56:35 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:21:01 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:06:10 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char    *get_env_value(char *key, char **envs)
         i++;
     }
     return (value);
-}
+}//subin: freeing might be needed
 
 int print_error(char *token, char *message)
 {
