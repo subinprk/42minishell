@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:41:10 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 20:17:36 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:21:16 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	re_type_l_pipes(int *pipefd, int filefd)
 	close(pipefd[0]);
 }
 
-void	connect_re_l_pipes(int *fd, int *pipefd)
+void	connect_re_l_pipes(int *pipefd)
 {
 	int	fd[2];
 
@@ -67,7 +67,7 @@ void	connect_re_l_pipes(int *fd, int *pipefd)
 	close(pipefd[1]);
 }
 
-void	connect_re_r_pipes(int *fd, int *pipefd)
+void	connect_re_r_pipes(int *pipefd)
 {
 	int	fd[2];
 

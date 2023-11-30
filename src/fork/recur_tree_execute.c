@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:27:27 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 15:51:20 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:24:59 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,18 @@ void	execute_simple_redirect(t_cmd *node, char **envp)
 	int		pipefd[2];
 	int		type;
 
+	type = redirect_type(node->left_child);
 	if (pipe(pipefd) == -1)
 		return (perror("Pipe: "));
 	pid = fork();
 	if (pid < 0)
 		return (perror("Fork: "));
 	else if (pid == 0)
-	{
-		type = redirect_type(node->left_child);
 		redirect_connect(type, node->right_child, pipefd);
-	}
 	else
 	{
 		waitpid(pid, NULL, WNOHANG);
-		connect_command(pipefd, envp);
+		connect_command_redir(type, pipefd);
 	}
 }
 void	execute_tree(t_cmd *node, char **envp)

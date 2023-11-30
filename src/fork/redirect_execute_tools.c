@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:13:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 15:41:49 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 20:28:33 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,18 @@ void	redirect_r_connect(int re_type, t_cmd *file_name, int *pipefd)
 
 }
 
-void connect_command(int re_type, int *pipefd)
+void	redirect_connect(int re_type, t_cmd *node, int *pipefd)
 {
-
 	if (re_type == REL_TYPE_L || re_type == REL_TYPE_LL)
-	{
-
-	}
+		redirect_l_connect(re_type, node, pipefd);
 	else if (re_type == REL_TYPE_R || re_type == REL_TYPE_RR)
-	{
+		redirect_r_connect(re_type, node, pipefd);
+}
 
-	}
+void	connect_command_redir(int re_type, int *pipefd)
+{
+	if (re_type == REL_TYPE_L || re_type == REL_TYPE_LL)
+		connect_re_l_pipes(pipefd);
+	else if (re_type == REL_TYPE_R || re_type == REL_TYPE_RR)
+		connect_re_r_pipes(pipefd);
 }
