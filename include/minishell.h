@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/11/28 11:22:04 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:58:13 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,15 @@ typedef struct s_cmd
 	char				**cmdstr;
 //	int					token;
 	int					node_type;
+	int					pipe_exist;
 }	t_cmd;
+
+typedef struct s_stdio
+{
+	int				redirect_type;
+	char			*filename;
+	struct s_stdio	*next_stdio;
+}	t_stdio;
 
 void	free_2d(char **arr);
 int		array_length_2d(void **array);

@@ -6,13 +6,13 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:52:28 by siun              #+#    #+#             */
-/*   Updated: 2023/11/27 13:24:06 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 21:05:52 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_cmd	*generate_tree_node(int node_type)
+t_cmd	*generate_tree_node(int node_type, int pipe_e)
 {
 	t_cmd *new_node;
 
@@ -21,6 +21,7 @@ t_cmd	*generate_tree_node(int node_type)
 	new_node->left_child = NULL;
 	new_node->right_child = NULL;
 	new_node->cmdstr = NULL;
+	new_node->pipe_exist = pipe_e;
 }
 
 t_cmd	*generate_end_node(char **line, int node_type, int start, int end)
@@ -32,4 +33,5 @@ t_cmd	*generate_end_node(char **line, int node_type, int start, int end)
 	new_node->left_child = NULL;
 	new_node->right_child = NULL;
 	new_node->cmdstr = text_array_part_cpy(line, start, end);
+	new_node->pipe_exist = -1;
 }

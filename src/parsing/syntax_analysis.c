@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/27 15:37:39 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 21:04:04 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node)
 	int	tmp;
 
 	tmp = i[1];
-	node = generate_tree_node(NODE_CMD);
-	pipe_index = find_pipe(token, i);;
+	pipe_index = find_pipe(token, i);
+	node = generate_tree_node(NODE_CMD, pipe_index);
 	if (pipe_index != -1)
 		i[1] = pipe_index;
 	syntax_cmds(cmd_line, token, i, node->left_child);
