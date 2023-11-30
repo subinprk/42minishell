@@ -6,17 +6,27 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:51:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 17:13:57 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 18:05:19 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	builtin_action(t_cmd *builtin)
+void	builtin_action(t_cmd *builtin, char **envp)
 {
 	if (builtin->cmdstr[0] == "echo")
-		our_echo(builtin->cmdstr, envp)
-
+		our_echo(builtin->cmdstr, envp);
+	if (builtin->cmdstr[0] == "cd")
+		;
+	if (builtin->cmdstr[0] == "pwd")
+		;
+	if (builtin->cmdstr[0] == "export")
+		;
+	if (builtin->cmdstr[0] == "unset")
+		;
+	if (builtin->cmdstr[0] == "env")
+		;
+	if (builtin->cmdstr[0] == )
 }
 
 void	simpe_cmd_action(t_cmd *cmd, int *pipefd, int builtin, char **envp)
