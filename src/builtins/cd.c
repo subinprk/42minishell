@@ -6,13 +6,11 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:52 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:21:39 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:51:13 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-extern int g_exit_status;
 
 //changes the current working directory to the user's home directory
 int	cd_to_home_directory(char *current_path, char **cmdline, char **envs)

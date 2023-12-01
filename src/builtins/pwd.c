@@ -6,13 +6,11 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:35:29 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:01:27 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:29:55 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-extern int g_exit_status;
 
 /*retrieves and prints the current working directory. It uses the getcwd
 function to obtain the path, then prints tp the standard output.

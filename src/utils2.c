@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:14:48 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:16:37 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:39:26 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ int        remove_char(char *str, char c)
     }
     str[j] = 0;
     return (1);
+}
+
+int        double_char_len(char **str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
 }

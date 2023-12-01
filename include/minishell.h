@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/11/30 23:43:14 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 13:45:31 by irivero-         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # define TOK_WORD 1
 # define TOK_PIPE 2
 # define TOK_REDIRET 3
@@ -91,6 +90,7 @@ typedef struct s_cmd
 //	int					token;
 	int					node_type;
 	int					pipe_exist;
+	int					pre_flag;
 }	t_cmd;
 
 typedef struct s_stdio
@@ -99,6 +99,9 @@ typedef struct s_stdio
 	char			*filename;
 	struct s_stdio	*next_stdio;
 }	t_stdio;
+
+extern char	**g_envp;
+extern int	g_exit_status;
 
 void	free_2d(char **arr);
 int		array_length_2d(void **array);

@@ -6,13 +6,11 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:47 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 11:22:08 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:51:28 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-extern int g_exit_status;
 
 void    exit_err(void)
 {
