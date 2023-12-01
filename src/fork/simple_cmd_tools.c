@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:11:50 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 13:58:23 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:43:24 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,24 @@ int	check_builtin(t_cmd *file_path)
 
 void	builtin_action(t_cmd *builtin, char **cmdline)
 {
-	if (builtin->cmdstr[0] == "echo")
-		our_echo(builtin->cmdstr, g_envp);
-	if (builtin->cmdstr[0] == "cd")
-		change_directory(builtin->cmdstr, g_envp);
-	if (builtin->cmdstr[0] == "pwd")
+	char	*builtins;
+
+	builtins = builtin->cmdstr[0];
+	if (!ft_strcmp(builtins, "echo"))
+		our_echo(cmdline, g_envp);
+	else if (!ft_strcmp(builtins, "cd"))
+		change_directory(cmdline, g_envp);
+	else if (!ft_strcmp(builtins, "pwd"))
 		our_pwd();
-	if (builtin->cmdstr[0] == "export")
-		execute_export_command(builtin->cmdstr, cmdline);
-	if (builtin->cmdstr[0] == "unset")
-		our_unset(builtin->cmdstr, cmdline);
-	if (builtin->cmdstr[0] == "env")
+	else if (!ft_strcmp(builtins, "export"))
+		execute_export(builtin, cmdline);
+	else if (!ft_strcmp(builtins, "unset"))
+		execute_unset_command(builtin, cmdline);
+	else if (!ft_strcmp(builtins, "env"))
 		env(g_envp);
-	if (builtin->cmdstr[0] == "exit")
-		;
+	else if (!ft_strcmp(builtins, "exit"))
+		exit_command(builtin, cmdline);
+	else
+		return (0);
+	return (1);
 }

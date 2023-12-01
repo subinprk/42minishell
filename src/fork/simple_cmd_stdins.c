@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 03:08:27 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:33 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	heredoc_input(int filefd, char *word)
 	char	*line;
 
 	line = readline("heredoc> ");
+	if (!line)
+		exit(1);
 	while (ft_strcmp(line, word) != 0)
 	{
 		write(filefd, line, ft_strlen(line));
@@ -55,6 +57,7 @@ void	connect_stdins(t_stdio *last_in)
 		heredoc_input(filefd, last_in->filename);
 		re_type_l_pipes(filefd);///have to remove tmp file, have to think about it later
 	}
+	close(filefd);
 }
 
 void	pipe_stdins(int *pipefd, t_stdio *stdios)
@@ -67,7 +70,7 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 	while (!curr)
 	{
 		if (curr->re_type == REL_TYPE_L || curr->re_type == REL_TYPE_LL)
-			last_in == curr;
+			last_in = curr;
 		curr = curr->next_stdio;
 	}
 	if (last_in != NULL)

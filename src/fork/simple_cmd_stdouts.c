@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdouts.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 01:08:02 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:48 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	connect_stdouts(int **fd, t_stdio *last_out)
 			exit(errno);
 		re_type_r_pipes(fd, filefd);
 	}
+	close(filefd);
 }
 
 void	pipe_stdouts(int *pipefd, t_stdio *stdios)
@@ -53,7 +54,7 @@ void	pipe_stdouts(int *pipefd, t_stdio *stdios)
 	while (!curr)
 	{
 		if (curr->re_type == REL_TYPE_R || curr->re_type == REL_TYPE_RR)
-			last_out == curr;
+			last_out = curr;
 		curr = curr->next_stdio;
 	}
 	if (last_out != NULL)
