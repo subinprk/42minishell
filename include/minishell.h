@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 17:17:29 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:43:52 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,6 @@ void	generate_prompt(void);
 int		read_from_stdin(char **buf);
 int		get_line(char **line);
 
-// parser.c
-int        is_whitespace(char *c);
-
-
 // utils.c
 char	*ft_strnew(size_t size);
 char	*get_env_value(char *key, char **envs);
@@ -211,6 +207,7 @@ int		print_id_error(char *token, char *message);
 int		remove_char(char *str, char c);
 int		double_char_len(char **str);
 int		is_stringdigit(char *str);
+int     is_whitespace(char *c);
 
 int		find_pipe(int *token, int *i);
 int		find_redirection(int *token, int *i);

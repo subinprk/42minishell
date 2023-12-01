@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/11/28 10:47:39 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:42:15 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,7 @@ int		read_from_stdin(char **buf)
 	}
 	return (bytes_read);
 }
-/*
-void	exec_minishell(t_data *data)
-{
-	//check if command is a redirection or a pipe
-	//if not, printf error
 
-	//else loop
-	//end loop
-
-}
-*/
 int		main(int argc, char **argv, char **envp)
 {
 	int		ret;
