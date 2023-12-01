@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_func_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:05:19 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 03:09:19 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 15:06:07 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	exec(char **cmd, char **env)
 	exit (errno);
 }
 
+/*
+if you are comparing only characters
+use single quotes instead of double quotes
+' ' instead of " "
+*/
 int	redirect_type(t_cmd *node)
 {
 	if (node->cmdstr[0] == "<")
