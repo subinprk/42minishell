@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:11:50 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 02:13:16 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 13:58:23 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ int	check_builtin(t_cmd *file_path)
 		return (0);
 }
 
-void	builtin_action(t_cmd *builtin)
+void	builtin_action(t_cmd *builtin, char **cmdline)
 {
 	if (builtin->cmdstr[0] == "echo")
-		our_echo(builtin->cmdstr, envp);
+		our_echo(builtin->cmdstr, g_envp);
 	if (builtin->cmdstr[0] == "cd")
-		;
+		change_directory(builtin->cmdstr, g_envp);
 	if (builtin->cmdstr[0] == "pwd")
-		;
+		our_pwd();
 	if (builtin->cmdstr[0] == "export")
-		;
+		execute_export_command(builtin->cmdstr, cmdline);
 	if (builtin->cmdstr[0] == "unset")
-		;
+		our_unset(builtin->cmdstr, cmdline);
 	if (builtin->cmdstr[0] == "env")
-		;
+		env(g_envp);
 	if (builtin->cmdstr[0] == "exit")
 		;
 }

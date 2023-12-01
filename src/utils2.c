@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:14:48 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 11:39:26 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:48:07 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ int        double_char_len(char **str)
     while (str[i])
         i++;
     return (i);
+}
+
+int        is_stringdigit(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (!ft_isdigit(str[i]))
+            return (0);
+        i++;
+    }
+    return (1);
 }
