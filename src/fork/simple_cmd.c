@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 02:48:39 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 16:54:30 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void    simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+void	simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
 	int	builtin;
 
@@ -28,7 +28,7 @@ void    simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 		exec(cmd->cmdstr, envp);
 }
 
-void    pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
 	int		fd;
 	pid_t	pid;

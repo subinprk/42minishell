@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/12/01 13:45:31 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:03:35 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,53 @@ typedef struct s_stdio
 extern char	**g_envp;
 extern int	g_exit_status;
 
+//tools
 void	free_2d(char **arr);
+void	free_stdios(t_stdio *stdios);
 int		array_length_2d(void **array);
-int		count_token(int *token, int token_identifier);
 char	**paths_array(char **envp);
-//void	program_command(t_data data, char **envp);
-//void	act_p_command(t_data data, char **envp);
-//void	do_pipe(t_data data, char **envp);
 void	exec(char **cmd, char **env);
 int		*token_data(char **chopped_str);
+int		find_pipe(int *token, int *i);
+int		find_redirection(int *token, int *i);
+void	find_rellocator(char *str, int *i, int *count);
+void	find_spaces(char *str, int *i, int *count);
+char	*strdup_rellocator(char *str, int *i);
+char	*strdup_word(char *str, int *i);
+int		composing_word(char c);
+int		count_word_length(char *str, int start);
+void	putting_words(char **word, char *str, int start, int length);
+char	**text_array_part_cpy(char **line, int start, int end);
+int		how_many_token_id(int *token, int token_identifier);
 
+
+int		ft_strcmp(char *s1, char *s2);
+
+
+//forks
+char	*command_path(char **path_array, int i, char *command);
+char	*path_pointer(char **envp, char *command);
+void	exec(char **cmd, char **env);
+void	search_tree(t_cmd *node, char **envp);
+void	pipe_stdins(int *pipefd, t_stdio *stdios);
+void	pipe_stdouts(int *pipefd, t_stdio *stdios);
+void	print_error_cmd(t_cmd *file_path, char **envp);
+int		check_builtin(t_cmd *file_path);
+void	builtin_action(t_cmd *builtin, char **cmdline);
+void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp);
+void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp);
+
+//parsing
+char	**chopping_str(char *str);
+t_cmd	*extract_command(char *str);
+int		*token_data(char **chopped_str);
+void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node);
+t_cmd	*generate_tree_node(int node_type, int pipe_e);
+t_cmd	*generate_end_node(char **line, int node_type, int start, int end);
 
 // generate_prompt.c
 void	generate_prompt(void);

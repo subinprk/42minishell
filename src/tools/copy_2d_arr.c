@@ -6,12 +6,12 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
-/*   Updated: 2023/11/30 15:01:34 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 17:01:38 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
+/*
 char	**cpy_full_2d_array(char **origin)
 {
 	int		i;
@@ -30,7 +30,7 @@ char	**cpy_full_2d_array(char **origin)
 	}
 	array[origin_length] = NULL;
 	return (array);
-}
+}*/
 /*
 char	**append_2d_array(char **origin, char *line)
 {
