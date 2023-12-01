@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 02:24:21 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 03:08:27 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	connect_stdins(t_stdio *last_in)
 	}
 }
 
-void    pipe_stdins(int *pipefd, t_stdio *stdios)
+void	pipe_stdins(int *pipefd, t_stdio *stdios)
 {
 	t_stdio	*last_in;
 	t_stdio	*curr;

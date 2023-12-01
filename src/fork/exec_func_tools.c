@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:05:19 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/23 02:34:55 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 03:09:19 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ void	exec(char **cmd, char **env)
 		free(path);
 	exit (errno);
 }
+
+int	redirect_type(t_cmd *node)
+{
+	if (node->cmdstr[0] == "<")
+		return (REL_TYPE_L);
+	else if (node->cmdstr[0] == "<<")
+		return (REL_TYPE_LL);
+	else if (node->cmdstr[0] == ">")
+		return (REL_TYPE_R);
+	else if (node->cmdstr[0] == ">>")
+		return (REL_TYPE_RR);
+}
+
 
 /*
 command_path:
