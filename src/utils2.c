@@ -6,13 +6,13 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:14:48 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 14:48:07 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:13:12 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int        remove_char(char *str, char c)
+int	remove_char(char *str, char c)
 {
     int i;
     int j;
@@ -29,7 +29,7 @@ int        remove_char(char *str, char c)
     return (1);
 }
 
-int        double_char_len(char **str)
+int	double_char_len(char **str)
 {
     int i;
 
@@ -39,7 +39,7 @@ int        double_char_len(char **str)
     return (i);
 }
 
-int        is_stringdigit(char *str)
+int	is_stringdigit(char *str)
 {
     int i;
 

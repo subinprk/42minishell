@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_envpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:23:07 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/22 15:27:20 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 17:14:22 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 char	**paths_array(char **envp)
 {

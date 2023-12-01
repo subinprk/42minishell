@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/12/01 17:03:35 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 17:15:14 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,43 @@ typedef struct s_stdio
 extern char	**g_envp;
 extern int	g_exit_status;
 
+//builtins
+
+//cd
+int		cd_to_home_directory(char *current_path, char **cmdline, char **envs);
+int		cd_to_env_variable(char *current_path, char **cmdline, char **envs);
+void	update_pwd_variables(char **envs);
+void	change_directory(char **cmdline, char **envs);
+
+//echo
+void	exit_status(void);
+void	echo_env_variable(char **cmdline, char **envs, int i);
+int		is_option_n(char *token);
+void	our_echo(char **cmdline, char **envs);
+
+//env
+void    env(char **args);
+
+//exit
+void    exit_err(void);
+void    exit_command(t_cmd *cmd, char **cmdline);
+
+//export
+void    print_export(char **env);
+int     is_valid_export_key(char *key);
+void	add_export_variable(char *str, char **new, int i);
+int		update_or_add_export(char *str, char ***env);
+void    execute_export_command(t_cmd *cmd, char **cmdline);
+
+//pwd
+void    our_pwd(void);
+
+//unset
+int 	is_valid_env_variable_name (char *str);
+int		check_env_variable(char *key, char *env);
+int 	unset_enviroment_variable(char *key, char ***env);
+void    execute_unset_command(t_cmd *cmd, char **cmdline);
+
 //tools
 void	free_2d(char **arr);
 void	free_stdios(t_stdio *stdios);
@@ -151,6 +188,9 @@ void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node);
 t_cmd	*generate_tree_node(int node_type, int pipe_e);
 t_cmd	*generate_end_node(char **line, int node_type, int start, int end);
 
+// get_envpath.c
+char	**paths_array(char **envp);
+
 // generate_prompt.c
 void	generate_prompt(void);
 int		read_from_stdin(char **buf);
@@ -165,7 +205,12 @@ char	*ft_strnew(size_t size);
 char	*get_env_value(char *key, char **envs);
 int 	print_error(char *token, char *message);
 int 	print_error2(char *token, char *token2, char *message);
+int		print_id_error(char *token, char *message);
 
+//utils2.c
+int		remove_char(char *str, char c);
+int		double_char_len(char **str);
+int		is_stringdigit(char *str);
 
 int		find_pipe(int *token, int *i);
 int		find_redirection(int *token, int *i);
