@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_prompt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 17:42:15 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:01:38 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,3 @@ int		read_from_stdin(char **buf)
 	return (bytes_read);
 }
 
-int		main(int argc, char **argv, char **envp)
-{
-	int		ret;
-	
-	ret = 1;
-	while (ret)
-	{
-		generate_prompt();
-
-	}
-	return (0);
-}

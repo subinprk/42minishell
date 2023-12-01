@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 17:43:52 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:50:31 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ char	*strdup_word(char *str, int *i);
 int		composing_word(char c);
 int		count_word_length(char *str, int start);
 void	putting_words(char **word, char *str, int start, int length);
+char	**cpy_full_2d_array(char **origin);
 char	**text_array_part_cpy(char **line, int start, int end);
 int		how_many_token_id(int *token, int token_identifier);
 
