@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/11/30 21:04:04 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 03:47:42 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node)
 	int	tmp;
 
 	tmp = i[1];
-	node = generate_tree_node(NODE_REDIRECTS);
+	node = generate_tree_node(NODE_REDIRECTS, -1);
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
@@ -77,7 +77,7 @@ void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node)
 
 void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node)
 {
-	node = generate_tree_node(NODE_SIMPLE_REDIRECT);
+	node = generate_tree_node(NODE_SIMPLE_REDIRECT, -1);
 	node->left_child = generate_end_node(cmd_line, NODE_RED_TYPE,
 						i[0], i[0] + 1);
 	node->right_child = generate_file_name_node(cmd_line, NODE_FILE_NAME,
