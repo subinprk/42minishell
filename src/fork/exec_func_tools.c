@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_func_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:05:19 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 15:14:36 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:18:23 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,15 @@ use single quotes instead of double quotes
 */
 int	redirect_type(t_cmd *node)
 {
-	if (node->cmdstr[0] == "<")
+	if (ft_strcmp(node->cmdstr[0], "<"))
 		return (REL_TYPE_L);
-	else if (node->cmdstr[0] == "<<")
+	else if (ft_strcmp(node->cmdstr[0], "<<"))
 		return (REL_TYPE_LL);
-	else if (node->cmdstr[0] == ">")
+	else if (ft_strcmp(node->cmdstr[0], ">"))
 		return (REL_TYPE_R);
-	else if (node->cmdstr[0] == ">>")
+	else if (ft_strcmp(node->cmdstr[0], ">>"))
 		return (REL_TYPE_RR);
 }
-
 
 /*
 command_path:

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexical_analysis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 02:36:57 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 16:52:08 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 16:16:49 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
+/*
 int	is_it_same(char *str1, char *str2)
 {
 	int	i;
@@ -24,17 +24,17 @@ int	is_it_same(char *str1, char *str2)
 		i ++;
 	}
 	return (1);
-}
+}*/
 
 int	is_it_rellocater(char *str)
 {
-	if (is_it_same(str, "<"))
+	if (ft_strcmp(str, "<"))
 		return (1);
-	else if (is_it_same(str, ">"))
+	else if (ft_strcmp(str, ">"))
 		return (1);
-	else if (is_it_same(str, ">>"))
+	else if (ft_strcmp(str, ">>"))
 		return (1);
-	else if (is_it_same(str, "<<"))
+	else if (ft_strcmp(str, "<<"))
 		return (1);
 	else
 		return (0);
@@ -42,13 +42,13 @@ int	is_it_rellocater(char *str)
 
 int	allocate_token(char *str)
 {
-	if (is_it_same(str, "|"))
+	if (ft_strcmp(str, "|"))
 		return (TOK_PIPE);
 	else if (is_it_rellocater(str))
 		return (TOK_REDIRET);
-	else if (is_it_same(str, "\'"))
+	else if (ft_strcmp(str, "\'"))
 		return (TOK_S_QUOTE);
-	else if (is_it_same(str, "\""))
+	else if (ft_strcmp(str, "\""))
 		return (TOK_D_QUOTE);
 	else
 		return (TOK_WORD);
