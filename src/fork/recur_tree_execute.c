@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 23:49:51 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 02:52:49 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 	if (!builtin)
 		print_error_cmd(cmd->left_child, envp);
 	if (cmd->pipe_exist != -1)
-	{
-		if (pipe(pipefd) == -1)
-			return (perror("Pipe: "));
-		if (pid < 0)
-			return (perror("Fork: "));
-		else if (pid == 0)
-			simple_cmd_action();
-		else
-		{
-			waitpid(pid, NULL, WNOHANG);
-			
-		}
-	}
+		pipe_pipe();
+	else
+		pipe_end();
+}
+
+void	execute_pipe(t_cmd *node, char **envp)
+{
+
+}
+
+void	execute_simple_redirect(t_cmd *node, char **envp)
+{
+	
 }
 
 void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)
@@ -51,7 +51,7 @@ void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)
 
 void	search_tree(t_cmd *node, char **envp)
 {
-	t_stdio	stdios;
+	t_stdio	*stdios;
 
 	execute_tree(node, stdios, envp);
 	if ((node->left_child != NODE_RED_TYPE ||

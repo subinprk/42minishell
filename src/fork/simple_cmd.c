@@ -6,66 +6,72 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 01:07:22 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/01 02:48:39 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void    pipe_pipe(t_cmd *cmd, char **envp)
+void    simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
+	int	builtin;
 
+	if (!stdios)
+	{
+		pipe_stdins(pipefd, stdios);
+		pipe_stdouts(pipefd, stdios);
+	}
+	builtin = check_builtin(cmd->left_child);
+	if (builtin)
+		builtin_action(cmd->right_child);
+	else
+		exec(cmd->cmdstr, envp);
 }
 
-void	re_type_r_pipes(int **fd, int filefd)
+void    pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
-	*(fd[1]) = dup2(filefd, 1);
-	if (*(fd[1]) == -1)
+	int		fd;
+	pid_t	pid;
+
+	if (pipe(pipefd) == -1)
+		return (perror("Pipe: "));
+	pid = fork();
+	if (pid < 0)
+		return (perror("Fork: "));
+	else if (pid == 0)
 	{
-		close(*(fd[0]));
-		close(*(fd[1]));
-		exit(errno);
+		close(pipefd[0]);
+		fd = dup2(pipefd[1], 1);
+		simple_cmd_action(cmd, pipefd, stdios, envp);
+	}
+	else
+	{
+		close(pipefd[1]);
+		fd = dup2(pipefd[0], 0);
+		waitpid(pid, NULL, WNOHANG);
 	}
 }
 
-void	connect_stdouts(int **fd, t_stdio *last_out)
+void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
-	int	filefd;
+	int		fd;
+	pid_t	pid;
 
-	if (last_out->re_type == REL_TYPE_R)
+	if (pipe(pipefd) == -1)
+		return (perror("Pipe: "));
+	pid = fork();
+	if (pid < 0)
+		return (perror("Fork: "));
+	else if (pid == 0)
 	{
-		filefd = open(last_out->filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		if (!filefd)
-			exit(errno);
-		re_type_r_pipes(fd, filefd);
+		close(pipefd[0]);
+		close(pipefd[1]);
+		simple_cmd_action(cmd, pipefd, stdios, envp);
 	}
-	else if (last_out->re_type == REL_TYPE_RR)
+	else
 	{
-		filefd = open(last_out->filename, O_WRONLY | O_CREAT | O_APPEND, 0666);
-		if (!filefd)
-			exit(errno);
-		re_type_r_pipes(fd, filefd);
+		close(pipefd[1]);
+		fd = dup2(pipefd[0], 0);
+		waitpid(pid, NULL, WNOHANG);
 	}
-}
-
-void	pipe_stdouts(int *pipefd, t_stdio *stdios)
-{
-	t_stdio	*last_out;
-	t_stdio	*curr;
-
-	last_out = NULL;
-	curr = stdios;
-	while (!curr)
-	{
-		if (curr->re_type == REL_TYPE_R || curr->re_type == REL_TYPE_RR)
-			last_out == curr;
-		curr = curr->next_stdio;
-	}
-	if (last_out != NULL)
-		connect_stdouts(pipefd, last_out);
-}
-
-void    simple_cmd_action(t_cmd *cmd, t_stdio *stdios, char **envp)
-{
-	int		fd[2];
 }
