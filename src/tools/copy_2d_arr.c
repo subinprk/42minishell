@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 17:50:06 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 18:19:12 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,28 @@ char	**cpy_full_2d_array(char **origin)
 	array[origin_length] = NULL;
 	return (array);
 }
-/*
+
 char	**append_2d_array(char **origin, char *line)
 {
 	int		i;
+	int		array_length;
 	char	**array;
 	char	**tmp;
 
+	array_length = array_length_2d(array);
 	tmp = cpy_full_2d_array(origin);
 	free_2d(origin);
+	origin = (char **)malloc(sizeof(char *) * (array_length + 2));
+	i = 0;
+	while (i < array_length)
+	{
+		origin[i] = ft_strdup(line[i]);
+		i ++;
+	}
+	line[array_length] = ft_strdup(line);
+	line[array_length + 1] = NULL;
 	return (array);
-}*/
+}
 
 char	**text_array_part_cpy(char **line, int start, int end)
 {

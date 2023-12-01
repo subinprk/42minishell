@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+         #
+#    By: subpark <subpark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/11/22 15:22:36 by irivero-         ###   ########.fr        #
+#    Updated: 2023/12/01 18:36:09 by subpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,38 @@ VALGRIND = @valgrind --leak-check=full
 
 SRCS_DIR = ./src/
 
-SRCS = $(addprefix $(SRCS_DIR), //add source archives names)
+SRCS = $(addprefix $(SRCS_DIR),  fork/exec_func_tools.c \
+ fork/recur_tree_execute.c \
+ fork/simple_cmd.c\
+ fork/simple_cmd_stdins.c\
+ fork/simple_cmd_stdouts.c\
+ fork/simple_cmd_tools.c\
+ parsing/get_a_command.c\
+ parsing/lexical_analysis.c\
+ parsing/tree_node_gen.c\
+ parsing/chopping_str.c\
+ parsing/syntax_analysis.c\
+ tools/counting_token.c\
+ tools/array_length.c\
+ tools/copy_2d_arr.c\
+ tools/chopping_str_tool.c\
+ tools/chopping_word_tools.c\
+ tools/check_token_existence.c\
+ tools/ft_strcmp.c\
+ tools/free_tools.c\
+ tools/get_envpath.c\
+ builtins/cd.c\
+ builtins/echo.c\
+ builtins/env.c\
+ builtins/exit.c\
+ builtins/export.c\
+ builtins/pwd.c\
+ builtins/unset.c\
+ handle_signal.c\
+ utils.c\
+ generate_prompt.c\
+ utils2.c\
+ main.c)
 
 OBJS = $(SRCS: .c=.o)
 

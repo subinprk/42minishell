@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 18:01:38 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/01 18:19:08 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,16 @@ int		get_line(char **line)
 {
 	int		ret;
 	char	*buf;
-	char	*tmp;
+	char	*prompt;
+	char	**tmp;
 
-	*line = ft_strdup("");
+	generate_prompt();
+	buf = readline("");
+	tmp = cpy_full_2d_array(line);
+	line = append_2d_array(line, tmp);
+	free_2d(tmp);
+	free(buf);
+	/**line = ft_strdup("");
 	while (1)
 	{
 		ret = read_from_stdin(&buf);
@@ -55,7 +62,7 @@ int		get_line(char **line)
 		}	
 		break ;
 	}
-	return (ret);
+	return (ret);*/
 }
 
 /* reads from standard input into the buffer*/
