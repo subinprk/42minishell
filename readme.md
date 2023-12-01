@@ -1,2 +1,2 @@
-h
-i
+Hi!
+Minishell loading...
