@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recur_tree_execute.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/30 21:24:33 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 23:49:51 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,27 @@
 
 void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 {
+	int		pipefd[2];
 	int		builtin;
+	pid_t	pid;
 
 	builtin = check_builtin(cmd->left_child);
 	if (!builtin)
 		print_error_cmd(cmd->left_child, envp);
-	simple_cmd_action();
 	if (cmd->pipe_exist != -1)
-
+	{
+		if (pipe(pipefd) == -1)
+			return (perror("Pipe: "));
+		if (pid < 0)
+			return (perror("Fork: "));
+		else if (pid == 0)
+			simple_cmd_action();
+		else
+		{
+			waitpid(pid, NULL, WNOHANG);
+			
+		}
+	}
 }
 
 void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)

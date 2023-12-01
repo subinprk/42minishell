@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/11/30 20:58:13 by subpark          ###   ########.fr       */
+/*   Updated: 2023/11/30 23:43:14 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_cmd
 
 typedef struct s_stdio
 {
-	int				redirect_type;
+	int				re_type;
 	char			*filename;
 	struct s_stdio	*next_stdio;
 }	t_stdio;

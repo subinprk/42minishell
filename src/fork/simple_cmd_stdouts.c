@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_cmd.c                                       :+:      :+:    :+:   */
+/*   simple_cmd_stdouts.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 01:07:22 by siun             ###   ########.fr       */
+/*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
+/*   Updated: 2023/12/01 01:08:02 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-void    pipe_pipe(t_cmd *cmd, char **envp)
-{
-
-}
 
 void	re_type_r_pipes(int **fd, int filefd)
 {
@@ -63,9 +58,4 @@ void	pipe_stdouts(int *pipefd, t_stdio *stdios)
 	}
 	if (last_out != NULL)
 		connect_stdouts(pipefd, last_out);
-}
-
-void    simple_cmd_action(t_cmd *cmd, t_stdio *stdios, char **envp)
-{
-	int		fd[2];
 }
