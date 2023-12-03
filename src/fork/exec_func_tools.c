@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_func_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:05:19 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 16:18:23 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/03 23:35:19 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	redirect_type(t_cmd *node)
 		return (REL_TYPE_R);
 	else if (ft_strcmp(node->cmdstr[0], ">>"))
 		return (REL_TYPE_RR);
+	return (0);
 }
 
 /*

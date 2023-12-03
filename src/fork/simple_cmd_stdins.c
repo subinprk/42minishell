@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:33 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/04 00:01:46 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,6 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 	}
 	if (last_in != NULL)
 		connect_stdins(last_in);
+	if (pipefd != NULL)
+		return ;//useless, but afraid to remove pipefd parameter...
 }

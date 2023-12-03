@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 16:07:49 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/04 00:15:17 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*line_by_line(char *str, int *i)
 	while (str[*i])
 	{
 		if (str[*i] == ' ')
-			*i ++;
+			(*i) ++;
 		else if (str[*i] == '\'')
 			return (ft_strdup("'"));//not sure if it is possible just send strdup directly as return value
 		else if (str[*i] == '"')
@@ -63,6 +63,7 @@ char	*line_by_line(char *str, int *i)
 			return (line);
 		}
 	}
+	return (NULL);
 }
 
 char	**chopping_str(char *str)

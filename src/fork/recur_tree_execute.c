@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 03:17:50 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/03 23:42:21 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 {
 	int		pipefd[2];
 	int		builtin;
-	pid_t	pid;
 
 	builtin = check_builtin(cmd->left_child);
 	if (!builtin)
@@ -61,20 +60,20 @@ void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)
 		//execute_pipe(node, envp);
 		;
 	else if (node->node_type == NODE_SIMPLE_CMD)
-		execute_simple_cmd(node, envp, stdios);
+		execute_simple_cmd(node, stdios, envp);
 	else if (node->node_type == NODE_SIMPLE_REDIRECT)
 		execute_simple_redirect(node, stdios);
 }
 
 void	search_tree(t_cmd *node, char **envp)
 {
-	t_stdio	*stdios;
+	static t_stdio	*stdios;
 
 	execute_tree(node, stdios, envp);
-	if ((node->left_child != NODE_RED_TYPE ||
-		node->left_child != NODE_FILE_PATH) && node->left_child)
+	if ((node->left_child->node_type != NODE_RED_TYPE ||
+		node->left_child->node_type != NODE_FILE_PATH) && node->left_child)
 		search_tree(node->left_child, envp);
-	if ((node->right_child != NODE_FILE_NAME ||
-		node->right_child != NODE_ARGV) && node->right_child)
+	if ((node->right_child->node_type != NODE_FILE_NAME ||
+		node->right_child->node_type != NODE_ARGV) && node->right_child)
 		search_tree(node->right_child, envp);
 }

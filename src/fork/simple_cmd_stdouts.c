@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdouts.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:48 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/04 00:04:20 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ void	pipe_stdouts(int *pipefd, t_stdio *stdios)
 		curr = curr->next_stdio;
 	}
 	if (last_out != NULL)
-		connect_stdouts(pipefd, last_out);
+		connect_stdouts(&pipefd, last_out);
 }

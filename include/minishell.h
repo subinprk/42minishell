@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 18:17:17 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/04 00:00:24 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # include <errno.h>
 # include <limits.h>
 # include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include "../gnl/get_next_line.h"
 # include "../gnl/ft_printf/ft_printf.h"
@@ -166,6 +168,7 @@ int		ft_strcmp(char *s1, char *s2);
 
 
 //forks
+int		redirect_type(t_cmd *node);
 char	*command_path(char **path_array, int i, char *command);
 char	*path_pointer(char **envp, char *command);
 void	exec(char **cmd, char **env);
