@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 18:23:17 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/04 20:19:29 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int main(int argc, char **argv, char **envs)
 {
 	char	**line;
-	int		tmp;
 	int		index;
 	t_cmd	*tree;
 
-	tmp = argc;
 	line = NULL;
 	index = 0;
 	g_envp = cpy_full_2d_array(envs);
 	set_signal();
-	while(tmp)
+	while(1)
 	{
 		get_line(line);
 		tree = extract_command(line[index]);
