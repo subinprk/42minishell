@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:00:00 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 18:04:38 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/04 20:43:31 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ int	find_pipe(int *token, int *i)
 int	find_redirection(int *token, int *i)
 {
 	return (find_existence(token, TOK_REDIRET, i));
+}
+
+int	how_many_token_id(int *token, int token_identifier)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (token[i] != TOK_NULL_HANDLE)
+	{
+		if (token[i] == token_identifier)
+			count ++;
+		i ++;
+	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 #    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/12/03 23:33:33 by siun             ###   ########.fr        #
+#    Updated: 2023/12/04 20:44:27 by siun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ SRCS = $(addprefix $(SRCS_DIR),  fork/exec_func_tools.c \
  parsing/tree_node_gen.c\
  parsing/chopping_str.c\
  parsing/syntax_analysis.c\
- tools/counting_token.c\
  tools/array_length.c\
  tools/copy_2d_arr.c\
  tools/chopping_str_tool.c\
