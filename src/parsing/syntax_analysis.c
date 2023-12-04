@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 00:20:08 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/04 20:00:07 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node)
 	{
 		i[0] = pipe_index;
 		i[1] = tmp;
-		syntax_pipe(cmd_line, token, pipe_index, node->right_child);
+		syntax_pipe(cmd_line, token, i, node->right_child);
 	}
 }
 
@@ -41,18 +41,18 @@ void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node)
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
-	syntax_simple_cmd(cmd_line, token, i, node->left_child);
+	syntax_simple_cmd(cmd_line, i, node->left_child);
 	if (redirect_index != -1)
 	{
 		i[0] = redirect_index;
 		i[1] = tmp;
-		syntax_redirects(cmd_line, token, redirect_index, node->right_child);
+		syntax_redirects(cmd_line, token, i, node->right_child);
 	}
 }
 
-void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node)
+void	syntax_simple_cmd(char **cmd_line, /*int *token,*/ int *i, t_cmd *node)
 {
-	node = generate_tree_node(NODE_SIMPLE_CMD);
+	node = generate_tree_node(NODE_SIMPLE_CMD, -1);
 	node->left_child = generate_end_node(cmd_line, NODE_FILE_PATH, i[0], i[0] + 1);
 	node->right_child = generate_end_node(cmd_line, NODE_ARGV, i[0], i[1]);
 }
@@ -66,20 +66,20 @@ void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node)
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
-	syntax_simple_redirect(cmd_line, token, i, node->left_child);
+	syntax_simple_redirect(cmd_line, i, node->left_child);
 	if (redirect_index != -1)
 	{
 		i[0] = redirect_index;
 		i[1] = tmp;
-		syntax_redirects(cmd_line, token,redirect_index, node->right_child);
+		syntax_redirects(cmd_line, token, i, node->right_child);
 	}
 }
 
-void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node)
+void	syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd *node)
 {
 	node = generate_tree_node(NODE_SIMPLE_REDIRECT, -1);
 	node->left_child = generate_end_node(cmd_line, NODE_RED_TYPE,
 						i[0], i[0] + 1);
-	node->right_child = generate_file_name_node(cmd_line, NODE_FILE_NAME,
+	node->right_child = generate_end_node(cmd_line, NODE_FILE_NAME,
 						i[0] + 1, i[1]);
 }

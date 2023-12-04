@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_word_tools.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:17:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 15:35:05 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/04 20:15:22 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	composing_word(char c)
 {
-	if (c != ' ' & c != '|' & c != '<' & c != '>' & c != '\'' & c != '"')
+	if (c != ' ' && c != '|' && c != '<' && c != '>' && c != '\'' && c != '"')
 		return (1);
 	else
 		return (0);
@@ -40,5 +40,5 @@ void	putting_words(char **word, char *str, int start, int length)
 		*word[i] = str[start + i];
 		i ++;
 	}
-	*word[length] = NULL;
+	*(word[length]) = 0;
 }

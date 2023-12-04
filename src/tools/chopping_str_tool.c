@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_str_tool.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/11/27 16:08:26 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/04 20:12:05 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*strdup_rellocator(char *str, int *i)
 		else
 			return (ft_strdup(">"));
 	}
+	return (NULL);
 }
 
 char	*strdup_word(char *str, int *i)

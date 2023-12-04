@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/04 00:00:24 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/04 20:05:33 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ char	**cpy_full_2d_array(char **origin);
 char	**append_2d_array(char **origin, char *line);
 char	**text_array_part_cpy(char **line, int start, int end);
 int		how_many_token_id(int *token, int token_identifier);
+int		token_length(int *token);
 
 
 int		ft_strcmp(char *s1, char *s2);
@@ -187,9 +188,9 @@ t_cmd	*extract_command(char *str);
 int		*token_data(char **chopped_str);
 void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node);
 void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node);
-void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_simple_cmd(char **cmd_line, /*int *token,*/ int *i, t_cmd *node);
 void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node);
-void	syntax_simple_redirect(char **cmd_line, int *token, int *i, t_cmd *node);
+void	syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd *node);
 t_cmd	*generate_tree_node(int node_type, int pipe_e);
 t_cmd	*generate_end_node(char **line, int node_type, int start, int end);
 

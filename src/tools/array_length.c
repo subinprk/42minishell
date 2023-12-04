@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:22:53 by siun              #+#    #+#             */
-/*   Updated: 2023/11/25 16:50:17 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/04 20:06:32 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@ int	array_length_2d(void **array)
 	int	i;
 
 	i = 0;
-	while (array[i] != NULL)
+	while ((void *)array[i] != NULL)
+		i ++;
+	return (i);
+}
+
+int	token_length(int *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i] != 0)
 		i ++;
 	return (i);
 }
