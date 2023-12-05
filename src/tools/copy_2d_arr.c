@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
-/*   Updated: 2023/12/05 16:18:50 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/05 16:38:30 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ char	**cpy_full_2d_array(char **origin)
 	int		origin_length;
 	char	**array;
 
+	array = NULL;
 	origin_length = array_length_2d(origin);
-	array = (char **)malloc(sizeof(char *) * (origin_length) + 1);
+	array = (char **)malloc(sizeof(char *) * ((origin_length) + 1));
 	if (!array)
 		exit(errno);
 	i = 0;
@@ -30,7 +31,6 @@ char	**cpy_full_2d_array(char **origin)
 			exit(errno);
 		i ++;
 	}
-	printf("copy length: %d", origin_length);
 	array[origin_length] = NULL;
 	return (array);
 }
