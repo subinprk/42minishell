@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:11:50 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/04 00:09:41 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 15:39:06 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	print_error_cmd(t_cmd *file_path, char **envp)
 	path_buf = path_pointer(envp, file_path->cmdstr[0]);
 	if (!path_buf)
 	{
-		ft_printf("%s: ", file_path->cmdstr[0]);
+		printf("%s: ", file_path->cmdstr[0]);
 		if (errno != 2)
 			perror("");
 		else
-			ft_printf("command not found\n");
+			printf("command not found\n");
 	}
 	free(path_buf);
 	return ;
@@ -59,7 +59,7 @@ void	builtin_action(t_cmd *builtin, char **cmdline)
 	else if (!ft_strcmp(builtins, "unset"))
 		execute_unset_command(builtin, cmdline);
 	else if (!ft_strcmp(builtins, "env"))
-		env(g_envp);
+		ft_env(g_envp);
 	else if (!ft_strcmp(builtins, "exit"))
 		exit_command(builtin, cmdline);
 }

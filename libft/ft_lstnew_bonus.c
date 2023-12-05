@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:43:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:00:12 by subpark          ###   ########.fr       */
+/*   Created: 2023/05/31 10:36:10 by subpark           #+#    #+#             */
+/*   Updated: 2023/06/02 11:01:31 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "libft.h"
 
-/*takes an array of strings representing comand-line args.
-It iterates through the array and prints each element on a new line*/
-void	ft_env(char **args)
+t_list	*ft_lstnew(void *content)
 {
-	int i;
+	t_list	*newnode;
 
-	i = 0;
-	while (args[i])
-	{
-		ft_putstr_fd(args[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;
-	}
-	g_exit_status = 0;
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode -> content = content;
+	newnode -> next = NULL;
+	return (newnode);
 }
+/*
+#include <stdio.h>
+int main(){
+	t_list *tester = ft_lstnew((char *)"Hello");
+	printf("%s", tester->content);
+	free (tester);
+	return (0);
+}*/

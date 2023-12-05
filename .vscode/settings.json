@@ -5,6 +5,8 @@
         "errno.h": "c",
         "limits.h": "c",
         "libft.h": "c",
-        "get_next_line.h": "c"
+        "get_next_line.h": "c",
+        "history.h": "c",
+        "stdlib.h": "c"
     }
 }

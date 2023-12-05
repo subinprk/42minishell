@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 09:34:12 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:34:14 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@
 # include <readline/history.h>
 # include <curses.h>
 
-# include "../gnl/get_next_line.h"
-# include "../gnl/ft_printf/ft_printf.h"
-# include "../gnl/ft_printf/libft/libft.h"
+# include "../libft/libft.h"
+
 /*
 typedef struct s_cmd 
 {
@@ -121,7 +120,7 @@ int		is_option_n(char *token);
 void	our_echo(char **cmdline, char **envs);
 
 //env
-void    env(char **args);
+void    ft_env(char **args);
 
 //exit
 void    exit_err(void);

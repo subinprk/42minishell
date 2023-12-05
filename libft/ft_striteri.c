@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: subpark <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/05 14:17:48 by subpark          ###   ########.fr       */
+/*   Created: 2023/05/16 13:11:20 by subpark           #+#    #+#             */
+/*   Updated: 2023/05/16 13:14:43 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int main()
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	**line;
 	int		index;
-	t_cmd	*tree;
 
-	line = NULL;
 	index = 0;
-	g_envp = ft_split(getenv("envs"), '\n');
-	set_signal();
-	while(1)
+	while (s[index])
 	{
-		get_line(line);
-		tree = extract_command(line[index]);
-		search_tree(tree, paths_array(g_envp));
+		f(index, &s[index]);
 		index ++;
 	}
-	exit(g_exit_status);
+	return ;
 }

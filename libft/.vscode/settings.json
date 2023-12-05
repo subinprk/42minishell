@@ -1,0 +1,10 @@
+{
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "libft.h": "c",
+        "bit": "c",
+        "mcheck.h": "c",
+        "libft_bonus.h": "c",
+        "stdio.h": "c"
+    }
+}

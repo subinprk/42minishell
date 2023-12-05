@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:43:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:00:12 by subpark          ###   ########.fr       */
+/*   Created: 2023/05/16 15:42:13 by subpark           #+#    #+#             */
+/*   Updated: 2023/06/01 11:04:17 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "libft.h"
 
-/*takes an array of strings representing comand-line args.
-It iterates through the array and prints each element on a new line*/
-void	ft_env(char **args)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int i;
+	unsigned char	*tmp_dest;
+	unsigned char	*tmp_src;
+	size_t			index;
 
-	i = 0;
-	while (args[i])
+	if (n == 0 || dest == src)
+		return (dest);
+	tmp_dest = (unsigned char *)dest;
+	tmp_src = (unsigned char *)src;
+	index = 0;
+	while (index < n)
 	{
-		ft_putstr_fd(args[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;
+		tmp_dest[index] = tmp_src[index];
+		index ++;
 	}
-	g_exit_status = 0;
+	return (dest);
 }

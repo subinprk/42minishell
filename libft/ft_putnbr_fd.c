@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:43:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:00:12 by subpark          ###   ########.fr       */
+/*   Created: 2023/05/16 14:59:36 by subpark           #+#    #+#             */
+/*   Updated: 2023/06/01 11:04:35 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "libft.h"
 
-/*takes an array of strings representing comand-line args.
-It iterates through the array and prints each element on a new line*/
-void	ft_env(char **args)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int i;
+	char	str;
 
-	i = 0;
-	while (args[i])
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
 	{
-		ft_putstr_fd(args[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;
+		ft_putstr_fd("-2147483648", fd);
+		return ;
 	}
-	g_exit_status = 0;
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = n * -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		str = '0' + (n % 10);
+	}
+	else if (n < 10)
+		str = '0' + n;
+	write(fd, &str, 1);
+	return ;
 }

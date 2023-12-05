@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 16:43:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:00:12 by subpark          ###   ########.fr       */
+/*   Created: 2023/06/01 17:08:30 by subpark           #+#    #+#             */
+/*   Updated: 2023/06/02 11:02:44 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "libft.h"
 
-/*takes an array of strings representing comand-line args.
-It iterates through the array and prints each element on a new line*/
-void	ft_env(char **args)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int i;
+	t_list	*new;
+	t_list	*node;
 
-	i = 0;
-	while (args[i])
+	node = NULL;
+	if (lst == NULL || f == NULL || del == NULL)
+		return (NULL);
+	while (lst)
 	{
-		ft_putstr_fd(args[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&node, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&node, new);
+		lst = lst->next;
 	}
-	g_exit_status = 0;
+	new = NULL;
+	return (node);
 }

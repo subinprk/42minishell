@@ -3,89 +3,77 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: subpark <subpark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/12/04 20:44:27 by siun             ###   ########.fr        #
+#    Updated: 2023/12/05 15:42:12 by subpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-LIBS = libgnl.a
-LIBS_DIR = gnl
-LIBS_PATH = gnl/libgnl.a
+LIBFT		= libft.a
+LIBFT_DIR	= libft
+LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
-CFLAGS = -Wall -Werror -Wextra
+CCFLAGS = -Wall -Werror -Wextra
 
 GREEN = \033[0;32m
 BLUE = \033[0;34m
 RESET = \033[0m
 
 CC = cc
-VALGRIND = @valgrind --leak-check=full
 
-SRCS_DIR = ./src/
+SRCS_DIR = src/
 
-SRCS = $(addprefix $(SRCS_DIR),  fork/exec_func_tools.c \
- fork/recur_tree_execute.c \
- fork/simple_cmd.c\
- fork/simple_cmd_stdins.c\
- fork/simple_cmd_stdouts.c\
- fork/simple_cmd_tools.c\
- parsing/get_a_command.c\
- parsing/lexical_analysis.c\
- parsing/tree_node_gen.c\
- parsing/chopping_str.c\
- parsing/syntax_analysis.c\
- tools/array_length.c\
- tools/copy_2d_arr.c\
- tools/chopping_str_tool.c\
- tools/chopping_word_tools.c\
- tools/check_token_existence.c\
- tools/ft_strcmp.c\
- tools/free_tools.c\
- tools/get_envpath.c\
- builtins/cd.c\
- builtins/echo.c\
- builtins/env.c\
- builtins/exit.c\
- builtins/export.c\
- builtins/pwd.c\
- builtins/unset.c\
- handle_signal.c\
- utils.c\
- generate_prompt.c\
- utils2.c\
- main.c)
+SRCS = src/builtins/unset.c src/builtins/env.c src/builtins/cd.c\
+ src/builtins/echo.c\
+ src/builtins/exit.c\
+ src/builtins/export.c\
+ src/builtins/pwd.c\
+ src/fork/exec_func_tools.c\
+ src/fork/recur_tree_execute.c\
+ src/fork/simple_cmd.c\
+ src/fork/simple_cmd_stdins.c\
+ src/fork/simple_cmd_stdouts.c\
+ src/fork/simple_cmd_tools.c\
+ src/handle_signal.c\
+ src/parsing/chopping_str.c\
+ src/parsing/get_a_command.c\
+ src/parsing/lexical_analysis.c\
+ src/parsing/syntax_analysis.c\
+ src/parsing/tree_node_gen.c\
+ src/tools/free_tools.c\
+ src/tools/ft_strcmp.c\
+ src/tools/get_envpath.c\
+ src/tools/array_length.c\
+ src/tools/check_token_existence.c\
+ src/tools/chopping_str_tool.c\
+ src/tools/chopping_word_tools.c\
+ src/tools/copy_2d_arr.c\
+ src/generate_prompt.c\
+ src/main.c\
+ src/utils.c\
+ src/utils2.c\
 
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME) $(LIBS_PATH)
+all: $(NAME)
 
-$(NAME): $(OBJS) 
-	@echo "$(GREEN)\nmaking libft...ft_printf...GNL...$(RESET)"
-	@make -C $(LIBS_DIR)
-	@cp -r $(LIBS_PATH) $(NAME)
-	$(CC) $(SRCS) $(LIBS_PATH) $(CFLAGS) -o $(NAME) 
-	#ar rcs $(NAME) $(OBJS)
-	@echo "$(GREEN)\nmandatory norminette$(RESET)"
-	@norminette $(SRCS)
-
-clean: 
-	@rm -f $(OBJS)
-	@echo "$(BLUE)\ncleaning libft...ft_printf...GNL...$(RESET)"
-	@make clean -C $(LIBS_DIR)
-	
+clean:
+			rm -f $(OBJS)
+			make clean -C $(LIBFT_DIR)
 fclean: clean
-	@echo "$(BLUE)\nfcleaning libft...ft_printf...GNL...$(RESET)"
-	@make fclean -C $(LIBS_DIR)
-	@rm -f $(NAME)
+			rm -f $(NAME)
+			rm -f $(LIBFT)
+re: fclean all
 
-re: fclean
-	@make all
+%.o: %.c include/minishell.h
+			$(CC) $(CCFLAGS) -c $< -o $@
+$(LIBFT):
+			make bonus -C $(LIBFT_DIR)
+			mv $(LIBFT_DIR)/$(LIBFT) .
 
-run: $(NAME) 
-	$(VALGRIND) ./$(NAME)
-
-PHONY: all clean fclean re run
+$(NAME): $(OBJS) $(LIBFT)
+			$(CC) $(CCFLAGS) -lreadline -o$@ $^
+.PHONY: all clean fclean re
