@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:35:29 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 13:29:55 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:30:31 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Then frees the memory in getcwd. */
 void   	our_pwd(void)
 {
 	char	*current_directory;
-	int		exit_status;
+	//int		status;
 
-	exit_status = EXIT_SUCCESS;
+	//status = EXIT_SUCCESS;
 	current_directory = getcwd(0, 1024);
 	ft_putendl_fd(current_directory, 1);
 	free(current_directory);

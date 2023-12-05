@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 00:01:46 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 09:18:20 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	connect_stdins(t_stdio *last_in)
 {
 	int	filefd;
 
+	filefd = -1;
+
 	if (last_in->re_type == REL_TYPE_L)
 	{
 		filefd = open(last_in->filename, O_RDONLY);
@@ -57,7 +59,8 @@ void	connect_stdins(t_stdio *last_in)
 		heredoc_input(filefd, last_in->filename);
 		re_type_l_pipes(filefd);///have to remove tmp file, have to think about it later
 	}
-	close(filefd);
+	if (filefd != -1)
+		close(filefd);
 }
 
 void	pipe_stdins(int *pipefd, t_stdio *stdios)

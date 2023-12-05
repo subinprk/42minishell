@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:47 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 14:56:00 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:28:46 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void    exit_command(t_cmd *cmd, char **cmdline)
 		// if it reaches this part it means that an error happened, and the exit status is set to 255
 		// the code 255 its truncated to 8 bits using & 255
 		g_exit_status = 255;
-		exit(g_exit_status && 255);
+		exit(g_exit_status & 255);
 	}
 	exit_err();
 }

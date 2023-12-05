@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/04 21:33:08 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 09:34:12 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,14 +201,14 @@ char	**paths_array(char **envp);
 // generate_prompt.c
 void	generate_prompt(void);
 int		read_from_stdin(char **buf);
-int		get_line(char **line);
+void	get_line(char **line);
 
 // utils.c
 char	*ft_strnew(size_t size);
 char	*get_env_value(char *key, char **envs);
 int 	print_error(char *token, char *message);
 int 	print_error2(char *token, char *token2, char *message);
-int		print_id_error(char *token, char *message);
+void	print_id_error(char *token, char *message);
 
 //utils2.c
 int		remove_char(char *str, char c);

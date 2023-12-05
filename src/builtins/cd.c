@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:52 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 11:51:13 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:24:45 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	cd_to_home_directory(char *current_path, char **cmdline, char **envs)
 int	cd_to_env_variable(char *current_path, char **cmdline, char **envs)
 {
 	//extract the enviroment variable name from the argument
-	current_path = find_value(&(cmdline[1][1]), envs);
+	current_path = get_env_value(&(cmdline[1][1]), envs);
 	//change the current working directory to the value of the environment variable
 	//fallback to HOME directory if failed
 	if (chdir(current_path) == -1)
-		chdir(find_value("HOME", envs));
+		chdir(get_env_value("HOME", envs));
 	return (1);
 }
 
@@ -52,10 +52,10 @@ void	update_pwd_variables(char **envs)
 	temporary_buffer = malloc(sizeof(char) * 1024);
 	//create strings with the new PWD and OLDPWD values
 	current_pwd = ft_strjoin("PWD=", getcwd(temporary_buffer, 1024));
-	old_pwd = ft_strjoin("OLDPWD=", find_value("PWD", envs));
+	old_pwd = ft_strjoin("OLDPWD=", get_env_value("PWD", envs));
 	//update the environment variables
-	check_export(current_pwd, &envs);
-	check_export(old_pwd, &envs);
+	update_or_add_export(current_pwd, &envs);
+	update_or_add_export(old_pwd, &envs);
 	free(current_pwd);
 	free(old_pwd);
 }

@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:02:32 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 11:51:19 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:28:09 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*prints the global exit status to the standard output*/
 void	exit_status(void)
 {
-	ft_putnbr_fd(ft_itoa(g_exit_status), 1);
+	ft_putstr_fd(ft_itoa(g_exit_status), 1);
 }
 
 /*handles echoing env variables based on cmdline arg*/
@@ -82,10 +82,10 @@ void	our_echo(char **cmdline, char **envs)
 			ret = remove_char(cmdline[i], '\'');
 		//print a space between args if not the last arg
 		if (cmdline[i + 1] != NULL)
-			ft_putstr_fd(' ', 1);
+			ft_putchar_fd(' ', 1);
 		i++;
 	}
 	//print a new line if the "-n" option was not used
 	if (ret != -1)
-		ft_putstr_fd('\n', 1);
+		ft_putchar_fd('\n', 1);
 }

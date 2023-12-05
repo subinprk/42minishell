@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdouts.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 00:04:20 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 09:20:01 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	connect_stdouts(int **fd, t_stdio *last_out)
 {
 	int	filefd;
 
+	filefd = -1;
 	if (last_out->re_type == REL_TYPE_R)
 	{
 		filefd = open(last_out->filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);

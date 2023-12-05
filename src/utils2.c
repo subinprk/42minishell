@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:14:48 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 17:43:18 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:34:50 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int        is_whitespace(char *c)
     int        i;
     int        space;
 
+    space = 0;
+    i = 0;
     if(c[0] == 0)
         return (1);
     while (c[i])

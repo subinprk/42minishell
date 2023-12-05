@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:56:35 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/04 21:46:08 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 09:31:24 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int print_error2(char *token, char *token2, char *message)
     return (-1);
 }
 
-int print_id_error(char *token, char *message)
+void print_id_error(char *token, char *message)
 {
     ft_putstr_fd("minishell: ", 2);
     ft_putstr_fd(token, 2);

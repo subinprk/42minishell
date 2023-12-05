@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:34:58 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 13:45:03 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:29:11 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void    execute_export_command(t_cmd *cmd, char **cmdline)
         {
             if (is_valid_export_key(strtok(temp[i], "=")))
             {
-                print_id_err(cmdline[i], "export");
+                print_id_error(cmdline[i], "export");
                 g_exit_status = 1;
             }
             remove_char(cmdline[i], '$');

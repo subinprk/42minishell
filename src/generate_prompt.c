@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_prompt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 18:19:08 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/05 09:33:45 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ void	generate_prompt(void)
 /* reads a line from standard input and appends it to the content of line
 it uses a loop to keep reading util the end of input.
 it returns the value of ret.*/
-int		get_line(char **line)
+void		get_line(char **line)
 {
-	int		ret;
+	//int		ret;
 	char	*buf;
-	char	*prompt;
+	//char	*prompt;
 	char	**tmp;
 
 	generate_prompt();
 	buf = readline("");
 	tmp = cpy_full_2d_array(line);
-	line = append_2d_array(line, tmp);
+	line = append_2d_array(line, *tmp);
 	free_2d(tmp);
 	free(buf);
 	/**line = ft_strdup("");
