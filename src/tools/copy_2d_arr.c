@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_2d_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:32:20 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 20:11:34 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 16:18:50 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	**cpy_full_2d_array(char **origin)
 	int		origin_length;
 	char	**array;
 
-	origin_length = array_length_2d((void **)origin);
+	origin_length = array_length_2d(origin);
 	array = (char **)malloc(sizeof(char *) * (origin_length) + 1);
+	if (!array)
+		exit(errno);
 	i = 0;
 	while(i < origin_length)
 	{
@@ -28,6 +30,7 @@ char	**cpy_full_2d_array(char **origin)
 			exit(errno);
 		i ++;
 	}
+	printf("copy length: %d", origin_length);
 	array[origin_length] = NULL;
 	return (array);
 }
@@ -38,7 +41,7 @@ char	**append_2d_array(char **origin, char *line)
 	int		array_length;
 	char	**tmp;
 
-	array_length = array_length_2d((void **)origin);
+	array_length = array_length_2d(origin);
 	tmp = cpy_full_2d_array(origin);
 	free_2d(origin);
 	origin = (char **)malloc(sizeof(char *) * (array_length + 2));

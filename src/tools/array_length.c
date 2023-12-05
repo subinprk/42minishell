@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   array_length.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:22:53 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 20:06:32 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 15:59:57 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	array_length_2d(void **array)
+int	array_length_2d(char **array)
 {
 	int	i;
 
 	i = 0;
-	while ((void *)array[i] != NULL)
+	while (array[i] != NULL)
 		i ++;
+	printf("array_length : %d\n", i);
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:34:14 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/05 15:58:42 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void    execute_unset_command(t_cmd *cmd, char **cmdline);
 //tools
 void	free_2d(char **arr);
 void	free_stdios(t_stdio *stdios);
-int		array_length_2d(void **array);
+int		array_length_2d(char **array);
 char	**paths_array(char **envp);
 void	exec(char **cmd, char **env);
 int		*token_data(char **chopped_str);

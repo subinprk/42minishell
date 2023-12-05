@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexical_analysis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 02:36:57 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 00:11:49 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/05 15:58:23 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	*token_data(char **chopped_str)
 	int	token_num;
 	int	i;
 
-	token_num = array_length_2d((void **)chopped_str);
+	token_num = array_length_2d(chopped_str);
 	token = (int *)malloc(sizeof(int) * (token_num + 1));
 	i = 0;
 	while (i < token_num)

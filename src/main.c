@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/05 15:50:40 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/05 16:10:28 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int main(int argc, char **argv, char **envs)
 	int		index;
 	t_cmd	*tree;
 
+	/*index = 0;
+	while (envs[index])
+	{
+		printf("line %d content: %s\n", index, envs[index]);
+		index ++;
+	}*/
 	line = NULL;
 	index = 0;
 	g_envp = cpy_full_2d_array(envs);
@@ -29,5 +35,6 @@ int main(int argc, char **argv, char **envs)
 		search_tree(tree, paths_array(envs));
 		index ++;
 	}
+	free_2d(g_envp);
 	exit(g_exit_status);
 }
