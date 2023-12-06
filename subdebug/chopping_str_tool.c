@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/06 14:19:48 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/06 14:31:56 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,13 +152,13 @@ char	*line_by_line(char *str, int *i)
 	{
 		if (str[*i] == ' ')
 			(*i) ++;
-		else if (str[*i] == '\'')
-			return (strdup("'"));//not sure if it is possible just send strdup directly as return value
-		else if (str[*i] == '"')
+		else if (str[*i] == '\'' &&  str[(*i) ++] > -1)
+			return (strdup("'"));
+		else if (str[*i] == '"' &&  str[(*i) ++] > -1)
 			return (strdup("\""));
-		else if (str[*i] == '|')
+		else if (str[*i] == '|' &&  str[(*i) ++] > -1)
 			return (strdup("|"));
-		else if (str[*i] == '<' || str[*i] == '>')
+		else if ((str[*i] == '<' || str[*i] == '>') &&  str[(*i) ++] > -1)
 		{
 			line = strdup_rellocator(str, i);
 			return (line);
@@ -205,9 +205,11 @@ int main()
 	chopped = chopping_str("   hello world It's Subin");
 	while (chopped[i])
 	{
-		printf("line %d print: %s", i, chopped[i]);
-		free(chopped[i]);
+		printf("line %d print: %s\n", i, chopped[i]);
 		i ++;
 	}
-	free(chopped[i]);
+	i = 0;
+	while (chopped[i])
+		free(chopped[i ++]);
+	free(chopped);
 }
