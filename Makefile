@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: subpark <subpark@student.42.fr>            +#+  +:+       +#+         #
+#    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/12/05 15:42:12 by subpark          ###   ########.fr        #
+#    Updated: 2023/12/06 11:30:18 by siun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIBFT_DIR	= libft
 LIBFT_PATH	= $(LIBFT_DIR)/$(LIBFT)
 
 CCFLAGS = -Wall -Werror -Wextra
+LDFLAGS = -L/usr/lib/x86_64-linux-gnu -lreadline
 
 GREEN = \033[0;32m
 BLUE = \033[0;34m
@@ -75,5 +76,5 @@ $(LIBFT):
 			mv $(LIBFT_DIR)/$(LIBFT) .
 
 $(NAME): $(OBJS) $(LIBFT)
-			$(CC) $(CCFLAGS) -lreadline -o$@ $^
+			$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $^ -lreadline
 .PHONY: all clean fclean re
