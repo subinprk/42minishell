@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/04 20:12:05 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/06 14:20:17 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,19 @@ char	*strdup_word(char *str, int *i)
 {
 	char	*word;
 	int		word_length;
+	int		start;
 
+	start = *i;
 	word_length = count_word_length(str, *i);
+	printf("word_length : %d\n", word_length);
 	word = (char *)malloc(sizeof(char) * (word_length + 1));
 	if (!word)
 		return (NULL);
-	putting_words(&word, str, *i, word_length);
-	(*i) = (*i) + word_length;
+	while ((*i) < word_length + start)
+	{
+		word[(*i) - start] = str[(*i)];
+		(*i) ++;
+	}
+	word[word_length] = 0;
 	return (word);
 }

@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:17:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/04 20:15:22 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/06 14:20:54 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,4 @@ int	count_word_length(char *str, int start)
 	while (composing_word(str[start + i]))
 		i ++;
 	return (i);
-}
-
-void	putting_words(char **word, char *str, int start, int length)
-{
-	int	i;
-
-	i = 0;
-	while (i < length)
-	{
-		*word[i] = str[start + i];
-		i ++;
-	}
-	*(word[length]) = 0;
 }

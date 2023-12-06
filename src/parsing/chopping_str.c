@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/04 00:15:17 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/06 14:03:37 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**chopping_str(char *str)
 	int		i;
 	int		index;
 
-	chopped = (char **)malloc(sizeof(char *) * count_line(str) + 1);
+	chopped = (char **)malloc(sizeof(char *) * (count_line(str) + 1));
 	if (!chopped)
 		return (NULL);
 	i = 0;
@@ -85,7 +85,8 @@ char	**chopping_str(char *str)
 			free_2d(chopped);
 			return (NULL);
 		}
-		i ++;
+		//i ++;
+		index ++;
 	}
 	return (chopped);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/05 16:10:28 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/06 12:46:51 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int main(int argc, char **argv, char **envs)
 {
-	char	**line;
+//	char	**line;
 	int		index;
+	char	*tmp;
 	t_cmd	*tree;
 
 	/*index = 0;
@@ -24,14 +25,17 @@ int main(int argc, char **argv, char **envs)
 		printf("line %d content: %s\n", index, envs[index]);
 		index ++;
 	}*/
-	line = NULL;
+//	line = NULL;
 	index = 0;
 	g_envp = cpy_full_2d_array(envs);
 	set_signal();
 	while(argc && argv[0] != NULL)
 	{
-		get_line(line);
-		tree = extract_command(line[index]);
+		//get_line(line);
+		//tree = extract_command(line[index]);
+		generate_prompt();
+		tmp = readline("");
+		tree = extract_command(tmp);
 		search_tree(tree, paths_array(envs));
 		index ++;
 	}
