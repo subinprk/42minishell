@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/06 14:32:24 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/07 17:07:27 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,23 @@ int	count_line(char *str)
 
 	count = 0;
 	i = 0;
-	while (str[i])
+	while (str[i] != 0)
 	{
-		if (str[i] == '|')
+		if ((str[i] == '|' || str[i] == '\'' || str[i] == '"') && i ++ > -1)
 			count ++;
-		else if (str[i] == ' ' && count > 0)
-			find_spaces(str, &i, &count);
-		else if (str[i] == '<' || str[i] == '>')
-			find_rellocator(str, &i, &count);
-		else if(str[i] == '\'')
+		else if (str[i] == ' ')
+			i ++;
+		else if (str[i] == '>' || str[i] == '<')
+		{
+			i ++;
+			if (str[i - 1] == str[i])
+				i ++;
 			count ++;
-		else if (str[i] == '"')
-			count ++;
-		i ++;
+		}
+		else if (((str[i] > '!' && str[i] <= '~')) && i ++ > -1)
+			if (!composing_word(str[i]))
+				count ++;
 	}
-	if (count == 0 && i > 0)
-		count ++;
 	return (count);
 }
 
@@ -47,12 +48,12 @@ char	*line_by_line(char *str, int *i)
 		if (str[*i] == ' ')
 			(*i) ++;
 		else if (str[*i] == '\'' &&  str[(*i) ++] > -1)
-			return (strdup("'"));
+			return (ft_strdup("'"));
 		else if (str[*i] == '"' &&  str[(*i) ++] > -1)
-			return (strdup("\""));
+			return (ft_strdup("\""));
 		else if (str[*i] == '|' &&  str[(*i) ++] > -1)
-			return (strdup("|"));
-		else if ((str[*i] == '<' || str[*i] == '>') &&  str[(*i) ++] > -1)
+			return (ft_strdup("|"));
+		else if ((str[*i] == '<' || str[*i] == '>'))
 		{
 			line = strdup_rellocator(str, i);
 			return (line);
@@ -71,8 +72,10 @@ char	**chopping_str(char *str)
 	char	**chopped;
 	int		i;
 	int		index;
+	int		num_lines;
 
-	chopped = (char **)malloc(sizeof(char *) * (count_line(str) + 1));
+	num_lines = count_line(str);
+	chopped = (char **)malloc(sizeof(char *) * (num_lines + 1));
 	if (!chopped)
 		return (NULL);
 	i = 0;
@@ -85,8 +88,8 @@ char	**chopping_str(char *str)
 			free_2d(chopped);
 			return (NULL);
 		}
-		//i ++;
 		index ++;
 	}
+	chopped[num_lines] = NULL;
 	return (chopped);
 }
