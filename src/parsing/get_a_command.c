@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/07 17:47:23 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:44:54 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cmd	*extract_command(char *str)
 	int		*token;
 	int		i[2];
 
-	int		t;
+	//int		t;
 
 	cmd_tree = NULL;
 	chopped_str = chopping_str(str);
@@ -30,16 +30,17 @@ t_cmd	*extract_command(char *str)
 	token = token_data(chopped_str);
 	if (!token)
 		return (NULL);
-	t = 0;
+	/*t = 0;
 	while (token[t])
 	{
 		printf("token: %d\n", token[t]);
 		t ++;
-	}
+	}*/
 	//function that parsing token & generate cmd linked list
 	i[0] = 0;
 	i[1] = token_length(token);
 	syntax_pipe(chopped_str, token, i, cmd_tree);
+	printf("is tree null ? : %p", &cmd_tree);
 	free_2d(chopped_str);
 	free(token);
 	return (cmd_tree);

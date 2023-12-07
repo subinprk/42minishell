@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 15:58:42 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/07 18:28:18 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,5 +222,10 @@ int		find_redirection(int *token, int *i);
 // handle_signal.c
 void    handle_signal(int sign);
 void	set_signal(void);
+
+//debugging
+
+void	print_2d_str(char **str);
+void	print_every_node(t_cmd *tree, int i);
 
 #endif
