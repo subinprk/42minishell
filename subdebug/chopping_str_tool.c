@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/06 14:31:56 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/06 18:58:24 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,14 @@ void	find_rellocator(char *str, int *i, int *count)
 
 void	find_spaces(char *str, int *i, int *count)
 {
-	if (str[*i] == ' ')
 	while (str[*i] == ' ')
+	{
+		printf("counting spaces   ");
 		(*i) ++;
-	(*count) ++;
+	}
+	if (str[*i] != 0)
+		(*count) ++;
+	printf("spaces counted\n");
 }
 
 char	*strdup_rellocator(char *str, int *i)
@@ -127,19 +131,21 @@ int	count_line(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|')
+		if (str[i] == '|' && i ++ > 0)
 			count ++;
 		else if (str[i] == ' ' && count > 0)
 			find_spaces(str, &i, &count);
 		else if (str[i] == '<' || str[i] == '>')
 			find_rellocator(str, &i, &count);
-		else if(str[i] == '\'')
+		else if(str[i] == '\'' && i ++ > 0)
 			count ++;
-		else if (str[i] == '"')
+		else if (str[i] == '"' && i ++ > 0)
 			count ++;
-		i ++;
+		else
+			i ++;
+		printf("count : %d\n", count);
 	}
-	if (count == 0 && i > 0)
+	if (composing_word(str[i]))
 		count ++;
 	return (count);
 }
@@ -153,7 +159,7 @@ char	*line_by_line(char *str, int *i)
 		if (str[*i] == ' ')
 			(*i) ++;
 		else if (str[*i] == '\'' &&  str[(*i) ++] > -1)
-			return (strdup("'"));
+			return (strdup("'"));//not sure if it is possible just send strdup directly as return value
 		else if (str[*i] == '"' &&  str[(*i) ++] > -1)
 			return (strdup("\""));
 		else if (str[*i] == '|' &&  str[(*i) ++] > -1)
@@ -179,6 +185,7 @@ char	**chopping_str(char *str)
 	int		index;
 
 	chopped = (char **)malloc(sizeof(char *) * (count_line(str) + 1));
+	printf("count_line result:  %d\n", count_line(str));
 	if (!chopped)
 		return (NULL);
 	i = 0;
@@ -202,7 +209,8 @@ int main()
 	char **chopped;
 	int	i;
 
-	chopped = chopping_str("   hello world It's Subin");
+	chopped = chopping_str("   hello world It's Subin    !");
+	i = 0;
 	while (chopped[i])
 	{
 		printf("line %d print: %s\n", i, chopped[i]);
