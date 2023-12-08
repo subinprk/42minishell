@@ -22,5 +22,13 @@ void	print_every_node(t_cmd *tree, int i)
 	print_2d_str(tree->cmdstr);
 	printf("\nnode_type: %d\n", tree->node_type);
 	printf("pipe_exist: %d\n", tree->pipe_exist);
-	printf("pre_flag: %d\n", tree->pre_flag);
+	//printf("pre_flag: %d\n", tree->pre_flag);
+}
+
+void	print_single_node(t_cmd *tree)
+{
+	printf("cmdstr:\n");
+	print_2d_str(tree->cmdstr);
+	printf("\nnode_type: %d\n", tree->node_type);
+	printf("pipe_exist: %d\n", tree->pipe_exist);
 }

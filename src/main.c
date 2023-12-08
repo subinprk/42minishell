@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/07 18:44:48 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:15:29 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ int main(int argc, char **argv, char **envs)
 		generate_prompt();
 		tmp = readline("");
 		tree = extract_command(tmp);
-		print_every_node(tree, 0);
+		//print_every_node(tree, 0);
 		//search_tree(tree, paths_array(envs));
 		index ++;
+		//free_tree(tree);
 	}
 	free_2d(g_envp);
 	exit(g_exit_status);
