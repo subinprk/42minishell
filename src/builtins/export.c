@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:34:58 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 09:29:11 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:33:01 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    execute_export_command(t_cmd *cmd, char **cmdline)
     temp = cmdline;
     i = 0;
     ret = 0;
-    if (cmd->pre_flag == 1)
+    if (cmd == NULL)
         return ;
     if (double_char_len(cmdline) == 1)
         print_export(g_envp);
