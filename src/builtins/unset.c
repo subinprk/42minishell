@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:12:42 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 13:44:56 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:06:11 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void    execute_unset_command(t_cmd *cmd, char **cmdline)
 
     i = 0;
     result = 0;
-    if (cmd->pre_flag == 1)
-        return ;
     while (cmdline[++i])
     {
         remove_char(cmdline[i], '\'');
