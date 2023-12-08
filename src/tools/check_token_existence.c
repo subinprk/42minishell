@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token_existence.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:00:00 by siun              #+#    #+#             */
-/*   Updated: 2023/12/04 20:43:31 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/08 17:38:03 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ int	find_pipe(int *token, int *i)
 int	find_redirection(int *token, int *i)
 {
 	return (find_existence(token, TOK_REDIRET, i));
+}
+
+int	find_next_redirection(int *token, int *i)
+{
+	int	index[2];
+
+	index[0] = i[0] + 1;
+	index[1] = i[1];
+	return (find_existence(token, TOK_REDIRET, index));
 }
 
 int	how_many_token_id(int *token, int token_identifier)

@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/08 16:29:12 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:37:39 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int     is_whitespace(char *c);
 
 int		find_pipe(int *token, int *i);
 int		find_redirection(int *token, int *i);
+int		find_next_redirection(int *token, int *i);
 
 
 // handle_signal.c
