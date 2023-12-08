@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/07 18:44:54 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:45:07 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_cmd	*extract_command(char *str)
 	i[0] = 0;
 	i[1] = token_length(token);
 	syntax_pipe(chopped_str, token, i, cmd_tree);
-	printf("is tree null ? : %p", &cmd_tree);
+//	printf("is tree null ? : %p", &cmd_tree);
 	free_2d(chopped_str);
 	free(token);
 	return (cmd_tree);

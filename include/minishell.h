@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/07 18:28:18 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 14:09:41 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,40 +49,6 @@
 # include <curses.h>
 
 # include "../libft/libft.h"
-
-/*
-typedef struct s_cmd 
-{
-	char	**cmdline;//should be the double array that can be used in execve func
-	int		flag;
-	char	quote;
-}	t_cmd;*/
-/*
-typedef struct s_data
-{
-//	t_list	*lstlast;
-//	t_cmd	*cmd;
-//	t_data	*next;
-//	t_data	*parent_node;
-	struct s_data	*left_child;
-	struct s_data	*right_child;
-	char	*buf;*/
-//
-/*	int		d_null;
-	char	*prompt;
-	int		current_index;
-	int		args_index;
-	int		args_count;
-	int		*args_size;
-	int		error;
-	char	quote;
-	char	**args_tmp;
-	char	**args;*/
-//Subin: I think some of them should be in different structure.
-//t_data is a storage for a command input,
-//it might be easier to understand
-//if there is another structure only for generating prompt.
-//}	t_data;
 
 typedef struct s_cmd
 {
@@ -188,7 +154,7 @@ t_cmd	*extract_command(char *str);
 int		*token_data(char **chopped_str);
 void	syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node);
 void	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node);
-void	syntax_simple_cmd(char **cmd_line, /*int *token,*/ int *i, t_cmd *node);
+void	syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node);
 void	syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node);
 void	syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd *node);
 t_cmd	*generate_tree_node(int node_type, int pipe_e);
