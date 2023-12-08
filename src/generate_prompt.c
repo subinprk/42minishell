@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 09:33:45 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:23:01 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,23 @@ int		g_exit_status = 0;
 void	generate_prompt(void)
 {
 	static char	*current_path;
+	char		*cwd_buffer;
 
+	current_path = NULL;
+	cwd_buffer = NULL;
+	if (current_path)
+		free(current_path);
+	cwd_buffer = getcwd(NULL, 0);
+	if (cwd_buffer != NULL)
+	{
+		current_path = ft_strdup(cwd_buffer);
+		free(cwd_buffer);
+	}
 	ft_putstr_fd("\033[1;32m", 1);
 	ft_putstr_fd("our shell: ", 1);
 	ft_putstr_fd("\033[0m", 1);
 	ft_putstr_fd("\033[1;34m", 1);
-	ft_putstr_fd(getcwd(current_path, 1024), 0);
+	ft_putstr_fd(current_path, 1);
 	ft_putstr_fd("\033[0m", 1);
 	ft_putstr_fd("$ ", 1);
 }
