@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/08 17:37:39 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 21:27:49 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,40 @@
 
 # include "../libft/libft.h"
 
+/*
+typedef struct s_cmd 
+{
+	char	**cmdline;//should be the double array that can be used in execve func
+	int		flag;
+	char	quote;
+}	t_cmd;*/
+/*
+typedef struct s_data
+{
+//	t_list	*lstlast;
+//	t_cmd	*cmd;
+//	t_data	*next;
+//	t_data	*parent_node;
+	struct s_data	*left_child;
+	struct s_data	*right_child;
+	char	*buf;*/
+//
+/*	int		d_null;
+	char	*prompt;
+	int		current_index;
+	int		args_index;
+	int		args_count;
+	int		*args_size;
+	int		error;
+	char	quote;
+	char	**args_tmp;
+	char	**args;*/
+//Subin: I think some of them should be in different structure.
+//t_data is a storage for a command input,
+//it might be easier to understand
+//if there is another structure only for generating prompt.
+//}	t_data;
+
 typedef struct s_cmd
 {
 	struct s_cmd	*left_child;
@@ -58,7 +92,7 @@ typedef struct s_cmd
 //	int					token;
 	int					node_type;
 	int					pipe_exist;
-//	int					pre_flag;
+	int					pre_flag;
 }	t_cmd;
 
 typedef struct s_stdio
@@ -189,11 +223,5 @@ int		find_next_redirection(int *token, int *i);
 // handle_signal.c
 void    handle_signal(int sign);
 void	set_signal(void);
-
-//debugging
-
-void	print_2d_str(char **str);
-void	print_every_node(t_cmd *tree, int i);
-void	print_single_node(t_cmd *tree);
 
 #endif

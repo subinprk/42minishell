@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_a_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:12:24 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/08 14:58:44 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 20:45:05 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_cmd	*extract_command(char *str)
 	tmp = syntax_pipe(chopped_str, token, i, cmd_tree);
 	if (tmp == -1)
 		//tree freeing
-		;
+		return(NULL);
 //	printf("is tree null ? : %p", &cmd_tree);
 //	printf("tmp value : %d", tmp);
 	free_2d(chopped_str);
