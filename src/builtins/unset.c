@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:12:42 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/08 16:11:27 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:11:57 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void    execute_unset_command(t_cmd *cmd, char **cmdline)
     int i;
     int result;
 
-	if (cmd = NULL)
+	if (cmd == NULL)
 		return ;
     i = 0;
     result = 0;
