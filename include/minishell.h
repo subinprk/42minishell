@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/08 15:02:05 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/08 16:29:12 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_cmd
 //	int					token;
 	int					node_type;
 	int					pipe_exist;
-	int					pre_flag;
+//	int					pre_flag;
 }	t_cmd;
 
 typedef struct s_stdio
