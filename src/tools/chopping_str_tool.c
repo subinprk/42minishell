@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_str_tool.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/06 14:20:17 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/07 17:06:18 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,29 @@ void	find_rellocator(char *str, int *i, int *count)
 	}
 }
 
-void	find_spaces(char *str, int *i, int *count)
+/*void	find_spaces(char *str, int *i, int *count)
 {
 	if (str[*i] == ' ')
 	while (str[*i] == ' ')
 		(*i) ++;
 	(*count) ++;
-}
+}*/
 
 char	*strdup_rellocator(char *str, int *i)
 {
-	if (str[*i] == '<')
+	(*i) = (*i) + 1;
+	if (str[(*i) - 1] == str[(*i)])
 	{
-		if (str[(*i) + 1] =='<')
-		{	
-			(*i) ++;
+		(*i) = (*i) + 1;
+		if (str[(*i) - 1] == '<')
 			return (ft_strdup("<<"));
-		}
 		else
-			return (ft_strdup("<"));
-	}
-	else if (str[*i] == '>')
-	{
-		if (str[(*i) + 1] =='>')
-		{	
-			(*i) ++;
 			return (ft_strdup(">>"));
-		}
+	}
+	else
+	{
+		if (str[(*i) - 1] == '<')
+			return (ft_strdup("<"));
 		else
 			return (ft_strdup(">"));
 	}
@@ -69,7 +65,6 @@ char	*strdup_word(char *str, int *i)
 
 	start = *i;
 	word_length = count_word_length(str, *i);
-	printf("word_length : %d\n", word_length);
 	word = (char *)malloc(sizeof(char) * (word_length + 1));
 	if (!word)
 		return (NULL);

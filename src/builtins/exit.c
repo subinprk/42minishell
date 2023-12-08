@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:59:47 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/05 09:28:46 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:32:26 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void    exit_command(t_cmd *cmd, char **cmdline)
 {
 	int ac;
 
-	ac = 0;
-    if (cmd->pre_flag == 1) 
+	if (cmd == NULL)
 		return ;
+	ac = 0;
 	while (cmdline[ac] != NULL) //counts the number of arguments
 		ac++;
 	if (ac == 1)

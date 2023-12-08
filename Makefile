@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: subpark <subpark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/12/06 11:30:18 by siun             ###   ########.fr        #
+#    Updated: 2023/12/07 18:29:52 by subpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ SRCS = src/builtins/unset.c src/builtins/env.c src/builtins/cd.c\
  src/main.c\
  src/utils.c\
  src/utils2.c\
+ \
+ subdebug/node_check.c
 
 OBJS = $(SRCS:.c=.o)
 

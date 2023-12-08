@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:02:21 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/06 18:58:24 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/08 20:43:04 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int	composing_word(char c)
 {
-	if (c != ' ' && c != '|' && c != '<' && c != '>' && c != '\'' && c != '"')
+	if (c != ' ' && c != '|' && c != '<' && c != '>' && c != '\''
+		&& c != '"' && c != ' ' && c != '\0')
 		return (1);
 	else
 		return (0);
@@ -77,23 +78,19 @@ void	find_spaces(char *str, int *i, int *count)
 
 char	*strdup_rellocator(char *str, int *i)
 {
-	if (str[*i] == '<')
+	(*i) = (*i) + 1;
+	if (str[(*i) - 1] == str[(*i)])
 	{
-		if (str[(*i) + 1] =='<')
-		{	
-			(*i) ++;
+		(*i) = (*i) + 1;
+		if (str[(*i) - 1] == '<')
 			return (strdup("<<"));
-		}
 		else
-			return (strdup("<"));
-	}
-	else if (str[*i] == '>')
-	{
-		if (str[(*i) + 1] =='>')
-		{	
-			(*i) ++;
 			return (strdup(">>"));
-		}
+	}
+	else
+	{
+		if (str[(*i) - 1] == '<')
+			return (strdup("<"));
 		else
 			return (strdup(">"));
 	}
@@ -108,7 +105,6 @@ char	*strdup_word(char *str, int *i)
 
 	start = *i;
 	word_length = count_word_length(str, *i);
-	printf("word_length : %d\n", word_length);
 	word = (char *)malloc(sizeof(char) * (word_length + 1));
 	if (!word)
 		return (NULL);
@@ -118,6 +114,7 @@ char	*strdup_word(char *str, int *i)
 		(*i) ++;
 	}
 	word[word_length] = 0;
+	printf("word length: %d \n" ,word_length);
 	return (word);
 }
 
@@ -129,7 +126,7 @@ int	count_line(char *str)
 
 	count = 0;
 	i = 0;
-	while (str[i])
+	while (str[i] != 0)
 	{
 		if (str[i] == '|' && i ++ > 0)
 			count ++;
@@ -164,7 +161,7 @@ char	*line_by_line(char *str, int *i)
 			return (strdup("\""));
 		else if (str[*i] == '|' &&  str[(*i) ++] > -1)
 			return (strdup("|"));
-		else if ((str[*i] == '<' || str[*i] == '>') &&  str[(*i) ++] > -1)
+		else if ((str[*i] == '<' || str[*i] == '>'))
 		{
 			line = strdup_rellocator(str, i);
 			return (line);
@@ -183,6 +180,7 @@ char	**chopping_str(char *str)
 	char	**chopped;
 	int		i;
 	int		index;
+	int		num_lines;
 
 	chopped = (char **)malloc(sizeof(char *) * (count_line(str) + 1));
 	printf("count_line result:  %d\n", count_line(str));
@@ -198,9 +196,10 @@ char	**chopping_str(char *str)
 			free_2d(chopped);
 			return (NULL);
 		}*/
-		//i ++;
 		index ++;
 	}
+	chopped[num_lines] = NULL;
+	printf("num lines: %d\n", num_lines);
 	return (chopped);
 }
 
