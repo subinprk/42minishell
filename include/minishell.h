@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/11 16:49:46 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/11 17:57:58 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,12 @@ char	*strdup_rellocator(char *str, int *i);
 char	*strdup_word(char *str, int *i);
 int		composing_word(char c);
 int		count_word_length(char *str, int start);
-void	putting_words(char **word, char *str, int start, int length);
 char	**cpy_full_2d_array(char **origin);
 char	**append_2d_array(char **origin, char *line);
 char	**text_array_part_cpy(char **line, int start, int end);
 int		how_many_token_id(int *token, int token_identifier);
 int		token_length(int *token);
+void	free_tree(t_cmd	*tree);
 
 
 int		ft_strcmp(char *s1, char *s2);

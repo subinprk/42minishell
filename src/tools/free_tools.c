@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:34:26 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/01 03:20:52 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/11 17:56:35 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,16 @@ void	free_stdios(t_stdio *stdios)
 	}
 }
 
-/*
-free_2d:
-function that free 2D dynamically allocated array
-*/
+void	free_tree(t_cmd	*tree)
+{
+	if (tree == NULL)
+		return ;
+	else
+	{
+		free_tree(tree->left_child);
+		free_tree(tree->right_child);
+		if (tree->cmdstr)
+			free_2d(tree->cmdstr);
+		free(tree);
+	}
+}
