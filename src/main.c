@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/11 16:22:35 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/11 16:24:13 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int main(int argc, char **argv, char **envs)
 		tree = extract_command(tmp);
 		search_tree(tree, paths_array(envs));
 		index ++;
+		tmp = NULL;
 		//free_tree(tree);
 	}
 	free_2d(g_envp);
