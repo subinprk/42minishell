@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/08 21:27:49 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/11 15:43:48 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,11 +186,11 @@ void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp);
 char	**chopping_str(char *str);
 t_cmd	*extract_command(char *str);
 int		*token_data(char **chopped_str);
-int		syntax_pipe(char **cmd_line, int *token, int *i, t_cmd *node);
-int		syntax_cmds(char **cmd_line, int *token, int *i, t_cmd *node);
-int		syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd *node);
-int		syntax_redirects(char **cmd_line, int *token, int *i, t_cmd *node);
-int		syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd *node);
+int		syntax_pipe(char **cmd_line, int *token, int *i, t_cmd **node);
+int		syntax_cmds(char **cmd_line, int *token, int *i, t_cmd **node);
+int		syntax_simple_cmd(char **cmd_line, int *token, int *i, t_cmd **node);
+int		syntax_redirects(char **cmd_line, int *token, int *i, t_cmd **node);
+int		syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd **node);
 t_cmd	*generate_tree_node(int node_type, int pipe_e);
 t_cmd	*generate_end_node(char **line, int node_type, int start, int end);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recur_tree_execute.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/04 20:04:59 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/11 15:47:51 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	search_tree(t_cmd *node, char **envp)
 	static t_stdio	*stdios;
 
 	execute_tree(node, stdios, envp);
-	if ((node->left_child->node_type != NODE_RED_TYPE ||
-		node->left_child->node_type != NODE_FILE_PATH) && node->left_child)
+	if (node->left_child && (node->left_child->node_type != NODE_RED_TYPE ||
+		node->left_child->node_type != NODE_FILE_PATH))
 		search_tree(node->left_child, envp);
-	if ((node->right_child->node_type != NODE_FILE_NAME ||
-		node->right_child->node_type != NODE_ARGV) && node->right_child)
+	if (node->right_child && (node->right_child->node_type != NODE_FILE_NAME ||
+		node->right_child->node_type != NODE_ARGV))
 		search_tree(node->right_child, envp);
 }

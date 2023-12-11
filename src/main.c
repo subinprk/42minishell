@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/11 15:20:47 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/11 16:22:35 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ int main(int argc, char **argv, char **envs)
 	char	*tmp;
 	t_cmd	*tree;
 
-	/*index = 0;
-	while (envs[index])
-	{
-		printf("line %d content: %s\n", index, envs[index]);
-		index ++;
-	}*/
 //	line = NULL;
 	index = 0;
 	g_envp = cpy_full_2d_array(envs);
@@ -36,8 +30,6 @@ int main(int argc, char **argv, char **envs)
 		generate_prompt();
 		tmp = readline(" ");
 		tree = extract_command(tmp);
-	//printf("%p\n", tree);
-		//print_every_node(tree, 0);
 		search_tree(tree, paths_array(envs));
 		index ++;
 		//free_tree(tree);
