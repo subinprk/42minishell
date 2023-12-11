@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/11 15:47:51 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/11 18:11:28 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	execute_simple_redirect(t_cmd *node, t_stdio *stdios)
 			curr = curr->next_stdio;
 		curr->next_stdio = redirection;
 	}
+	free(redirection);
 }
 
 void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)
