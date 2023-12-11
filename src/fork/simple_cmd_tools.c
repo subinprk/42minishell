@@ -6,7 +6,7 @@
 /*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:11:50 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/05 15:39:06 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/11 17:20:34 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ void	print_error_cmd(t_cmd *file_path, char **envp)
 
 int	check_builtin(t_cmd *file_path)
 {
-	char	*builtins;
-
-	builtins = file_path->cmdstr[0];
-	if (!ft_strcmp(builtins, "echo") || !ft_strcmp(builtins, "cd")
-		|| !ft_strcmp(builtins, "pwd") || !ft_strcmp(builtins, "export")
-		|| !ft_strcmp(builtins, "unset") || !ft_strcmp(builtins, "env")
-		|| !ft_strcmp(builtins, "exit"))
+	if (!ft_strcmp(file_path->cmdstr[0], "echo") || !ft_strcmp(file_path->cmdstr[0], "cd")
+		|| !ft_strcmp(file_path->cmdstr[0], "pwd") || !ft_strcmp(file_path->cmdstr[0], "export")
+		|| !ft_strcmp(file_path->cmdstr[0], "unset") || !ft_strcmp(file_path->cmdstr[0], "env")
+		|| !ft_strcmp(file_path->cmdstr[0], "exit"))
 		return (1);
 	else
 		return (0);
@@ -45,21 +42,18 @@ int	check_builtin(t_cmd *file_path)
 
 void	builtin_action(t_cmd *builtin, char **cmdline)
 {
-	char	*builtins;
-
-	builtins = builtin->cmdstr[0];
-	if (!ft_strcmp(builtins, "echo"))
+	if (!ft_strcmp(builtin->cmdstr[0], "echo"))
 		our_echo(cmdline, g_envp);
-	else if (!ft_strcmp(builtins, "cd"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "cd"))
 		change_directory(cmdline, g_envp);
-	else if (!ft_strcmp(builtins, "pwd"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "pwd"))
 		our_pwd();
-	else if (!ft_strcmp(builtins, "export"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "export"))
 		execute_export_command(builtin, cmdline);
-	else if (!ft_strcmp(builtins, "unset"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "unset"))
 		execute_unset_command(builtin, cmdline);
-	else if (!ft_strcmp(builtins, "env"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "env"))
 		ft_env(g_envp);
-	else if (!ft_strcmp(builtins, "exit"))
+	else if (!ft_strcmp(builtin->cmdstr[0], "exit"))
 		exit_command(builtin, cmdline);
 }
