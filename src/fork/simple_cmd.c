@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/03 23:47:56 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/12 22:16:50 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 	if (builtin)
 		builtin_action(cmd->right_child, cmd->right_child->cmdstr);
 	else
-		exec(cmd->cmdstr, envp);
+		exec(cmd->right_child->cmdstr, envp);
 }
 
 void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
