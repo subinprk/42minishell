@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdouts.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
-/*   Updated: 2023/12/05 09:20:01 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:00:51 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	pipe_stdouts(int *pipefd, t_stdio *stdios)
 
 	last_out = NULL;
 	curr = stdios;
-	while (!curr)
+	while (curr)
 	{
 		if (curr->re_type == REL_TYPE_R || curr->re_type == REL_TYPE_RR)
 			last_out = curr;

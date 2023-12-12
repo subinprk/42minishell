@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_stdins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/05 09:18:20 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:01:00 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 
 	last_in = NULL;
 	curr = stdios;
-	while (!curr)
+	while (curr)
 	{
 		if (curr->re_type == REL_TYPE_L || curr->re_type == REL_TYPE_LL)
 			last_in = curr;
