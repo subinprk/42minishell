@@ -5,6 +5,7 @@
         "name": "C Debug",
         "type": "cppdbg",
         "request": "launch",
+        "target": "multi-process",
         "program": "${workspaceFolder}/minishell", // Path to your compiled binary
         "args": [],
         "stopAtEntry": false,

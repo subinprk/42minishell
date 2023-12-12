@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:11:50 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/11 17:20:34 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/12 21:21:00 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_builtin(t_cmd *file_path)
 void	builtin_action(t_cmd *builtin, char **cmdline)
 {
 	if (!ft_strcmp(builtin->cmdstr[0], "echo"))
-		our_echo(cmdline, g_envp);
+		our_echo(&cmdline[1], g_envp);
 	else if (!ft_strcmp(builtin->cmdstr[0], "cd"))
 		change_directory(cmdline, g_envp);
 	else if (!ft_strcmp(builtin->cmdstr[0], "pwd"))
