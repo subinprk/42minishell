@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/03 23:47:56 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/12 10:58:23 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,31 @@ void	simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
 {
 	int	builtin;
 
-	if (!stdios)
+	if (stdios)
 	{
 		pipe_stdins(pipefd, stdios);
 		pipe_stdouts(pipefd, stdios);
 	}
-	builtin = check_builtin(cmd->left_child);
-	if (builtin)
-		builtin_action(cmd->right_child, cmd->right_child->cmdstr);
+	if (cmd->left_child)
+	{
+		builtin = check_builtin(cmd->left_child);
+		if (builtin)
+		{
+			if (cmd->right_child)
+				builtin_action(cmd->left_child, cmd->right_child->cmdstr);
+			else
+				builtin_action(cmd->left_child, NULL);
+		}
+		else
+		{
+			if (cmd->cmdstr)
+				exec(cmd->cmdstr, envp);
+			else
+				exec(cmd->left_child->cmdstr, envp);
+		}
+	}
 	else
-		exec(cmd->cmdstr, envp);
+		print_error_cmd(cmd->left_child, envp);
 }
 
 void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)

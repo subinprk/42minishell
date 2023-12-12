@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/05 09:18:20 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:39:47 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	heredoc_input(int filefd, char *word)
 	line = readline("heredoc> ");
 	if (!line)
 		exit(1);
-	while (ft_strcmp(line, word) != 0)
+	while (ft_strcmp(line, word) == 0)
 	{
 		write(filefd, line, ft_strlen(line));
 		write(filefd, "\n", 1);
@@ -59,7 +59,7 @@ void	connect_stdins(t_stdio *last_in)
 		heredoc_input(filefd, last_in->filename);
 		re_type_l_pipes(filefd);///have to remove tmp file, have to think about it later
 	}
-	if (filefd != -1)
+	if (!filefd)
 		close(filefd);
 }
 
@@ -70,7 +70,7 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 
 	last_in = NULL;
 	curr = stdios;
-	while (!curr)
+	while (curr)
 	{
 		if (curr->re_type == REL_TYPE_L || curr->re_type == REL_TYPE_LL)
 			last_in = curr;
@@ -78,6 +78,6 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 	}
 	if (last_in != NULL)
 		connect_stdins(last_in);
-	if (pipefd != NULL)
+	if (pipefd)
 		return ;//useless, but afraid to remove pipefd parameter...
 }

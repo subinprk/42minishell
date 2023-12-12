@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:23:06 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/01 14:18:01 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:55:58 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void    handle_signal(int sign)
 			g_exit_status = 1;;
     	}
 		else
-			ft_putstr_fd("\n", 1);
+			ft_putchar_fd('\n', 1);
 	}
 	else if (sign == SIGQUIT)
 	{
