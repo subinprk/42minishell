@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chopping_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:32:03 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/12 11:33:28 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:07:27 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,22 @@ int	count_line(char *str)
 
 	count = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != 0)
 	{
-		if ((str[i] == '|' || str[i] == '\'' || str[i] == '"'))
-		{
+		if ((str[i] == '|' || str[i] == '\'' || str[i] == '"') && i ++ > -1)
 			count ++;
-			i ++;
-		}
 		else if (str[i] == ' ')
 			i ++;
 		else if (str[i] == '>' || str[i] == '<')
 		{
-			count ++;
 			i ++;
 			if (str[i - 1] == str[i])
 				i ++;
-		}
-		else if (((str[i] > '!' && str[i] <= '~')) && !composing_word(str[i]))
-		{
 			count ++;
-			i ++;
 		}
-		else
-			i ++;
+		else if (((str[i] > '!' && str[i] <= '~')) && i ++ > -1)
+			if (!composing_word(str[i]))
+				count ++;
 	}
 	return (count);
 }
@@ -54,21 +47,12 @@ char	*line_by_line(char *str, int *i)
 	{
 		if (str[*i] == ' ')
 			(*i) ++;
-		else if (str[*i] == '\'')
-		{
-			(*i) ++;
+		else if (str[*i] == '\'' &&  str[(*i) ++] > -1)
 			return (ft_strdup("'"));
-		}
-		else if (str[*i] == '"')
-		{
-			(*i) ++;
+		else if (str[*i] == '"' &&  str[(*i) ++] > -1)
 			return (ft_strdup("\""));
-		}
-		else if (str[*i] == '|')
-		{
-			(*i) ++;
+		else if (str[*i] == '|' &&  str[(*i) ++] > -1)
 			return (ft_strdup("|"));
-		}
 		else if ((str[*i] == '<' || str[*i] == '>'))
 		{
 			line = strdup_rellocator(str, i);
@@ -98,8 +82,6 @@ char	**chopping_str(char *str)
 	index = 0;
 	while (str[i])
 	{
-		if (index >= num_lines)
-			return (NULL);
 		chopped[index] = line_by_line(str, &i);
 		if (!chopped[index])
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_prompt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:30:36 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/12 14:55:26 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:01:45 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@ void	generate_prompt(void)
 		current_path = ft_strdup(cwd_buffer);
 		free(cwd_buffer);
 	}
-	set_signal();
 	ft_putstr_fd("\033[1;32m", 1);
-	ft_putstr_fd("minihell: ", 1);
+	ft_putstr_fd("our shell: ", 1);
 	ft_putstr_fd("\033[0m", 1);
 	ft_putstr_fd("\033[1;34m", 1);
-	ft_putstr_fd(current_path , 1);
+	ft_putstr_fd(current_path, 1);
 	ft_putstr_fd("\033[0m", 1);
-	ft_putstr_fd("$ ", 1);
+	ft_putstr_fd("$", 1);
 }
 
+/* reads a line from standard input and appends it to the content of line
+it uses a loop to keep reading util the end of input.
+it returns the value of ret.*/
 void		get_line(char **line)
 {
 	//int		ret;
@@ -98,3 +100,4 @@ int		read_from_stdin(char **buf)
 	}
 	return (bytes_read);
 }
+
