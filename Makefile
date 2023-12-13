@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+         #
+#    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 15:14:43 by irivero-          #+#    #+#              #
-#    Updated: 2023/12/13 11:03:20 by irivero-         ###   ########.fr        #
+#    Updated: 2023/12/08 21:03:09 by siun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ SRCS = src/builtins/unset.c src/builtins/env.c src/builtins/cd.c\
  src/main.c\
  src/utils.c\
  src/utils2.c\
- src/get_next_line.c\
  \
  subdebug/node_check.c
 

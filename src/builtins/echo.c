@@ -6,7 +6,7 @@
 /*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:02:32 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/13 11:20:53 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/05 09:28:09 by irivero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_option_n(char *token)
 	int i;
 
 	//compare the cmdline arg to "-n"
-	if (ft_strncmp(token, "-n", 2) != 0)
+	if (ft_strncmp(token, "-n", 2) == 0)
 		return (0);
 	i = 2;
 	while (token[i])
@@ -62,7 +62,7 @@ void	our_echo(char **cmdline, char **envs)
 	int ret;
 
 	ret = 0;
-	i = 1;
+	i = 0;
 	//handle the "-n" option
 	while (is_option_n(cmdline[i]))
 	{

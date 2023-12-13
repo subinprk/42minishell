@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irivero- <irivero-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/13 12:07:01 by irivero-         ###   ########.fr       */
+/*   Updated: 2023/12/12 20:26:56 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@
 # define REL_TYPE_L 3
 # define REL_TYPE_LL 4
 
-# define BUFFER 1
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -51,14 +49,6 @@
 # include <curses.h>
 
 # include "../libft/libft.h"
-
-typedef struct s_gnl
-{
-	char	buffer[BUFFER];
-	int		start_idx;
-	int		last_idx;
-	int		value_to_print_exist;
-}	t_gnl;
 
 typedef struct s_cmd
 {
@@ -80,8 +70,6 @@ typedef struct s_stdio
 
 extern char	**g_envp;
 extern int	g_exit_status;
-
-int		get_next_line(int fd, char **line);
 
 //builtins
 
@@ -177,8 +165,8 @@ char	**paths_array(char **envp);
 
 // generate_prompt.c
 void	generate_prompt(void);
-//int		read_from_stdin(char **buf);
-int		get_line(char **line);
+int		read_from_stdin(char **buf);
+void	get_line(char **line);
 
 // utils.c
 char	*ft_strnew(size_t size);
