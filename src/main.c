@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/12 22:09:15 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/13 06:11:44 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ int main(int argc, char **argv, char **envs)
 	t_cmd	*tree;
 
 //	line = NULL;
+
+/*
+subin: should be initialised as a function for norminette later
 	index = 0;
 	g_envp = cpy_full_2d_array(envs);
 	envp = paths_array(envs);
 	set_signal();
+*/
+
 	while(argc && argv[0] != NULL)
 	{
 		//get_line(line);
