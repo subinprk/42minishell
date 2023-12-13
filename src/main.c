@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:48:01 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/13 06:22:34 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/13 06:24:18 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int argc, char **argv, char **envs)
 		free(tmp);
 		free_tree(tree);
 	}
+//also freeing shoud be in different function
 	free_2d(envp);
 	free_2d(g_envp);
 	exit(g_exit_status);
