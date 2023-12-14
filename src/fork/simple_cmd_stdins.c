@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/14 14:20:04 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/14 17:00:40 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,20 @@ void	heredoc_input(int filefd, char *word)
 	free(line);
 }
 
-void	re_type_l_pipes(int filefd)
+void	re_type_l_pipes(int filefd, int *pipefd)
 {	
 	int	fd;
 
-	fd = dup2(filefd, 0);
+	fd = dup2(filefd, pipefd[0]);
 	if (fd == -1)
+	{
+		close(filefd);
+		close(pipefd[0]);
 		exit(errno);
+	}
 }
 
-void	connect_stdins(t_stdio *last_in)
+void	connect_stdins(t_stdio *last_in, int *pipefd)
 {
 	int	filefd;
 
@@ -49,7 +53,7 @@ void	connect_stdins(t_stdio *last_in)
 		filefd = open(last_in->filename, O_RDONLY);
 		if (!filefd)
 			exit(errno);
-		re_type_l_pipes(filefd);
+		re_type_l_pipes(filefd, pipefd);
 	}
 	else if (last_in->re_type == REL_TYPE_LL)//have to make heredoc
 	{
@@ -57,7 +61,7 @@ void	connect_stdins(t_stdio *last_in)
 		if (!filefd)
 			exit(errno);
 		heredoc_input(filefd, last_in->filename);
-		re_type_l_pipes(filefd);///have to remove tmp file, have to think about it later
+		re_type_l_pipes(filefd, pipefd);///have to remove tmp file, have to think about it later
 	}
 	if (filefd != -1)
 		close(filefd);
@@ -77,7 +81,7 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 		curr = curr->next_stdio;
 	}
 	if (last_in != NULL)
-		connect_stdins(last_in);
+		connect_stdins(last_in, pipefd);
 	if (pipefd != NULL)
 		return ;//useless, but afraid to remove pipefd parameter...
 }

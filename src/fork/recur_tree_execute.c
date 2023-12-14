@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/14 14:18:34 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/14 17:14:55 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,39 @@ void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 	stdios = NULL;
 }
 
-void	execute_simple_redirect(t_cmd *node, t_stdio *stdios)
+void	execute_simple_redirect(t_cmd *node, t_stdio **stdios)
 {
 	t_stdio	*redirection;
 	t_stdio *curr;
 
 	redirection = (t_stdio *)malloc(sizeof(t_stdio));
-	if (stdios == NULL)
+	if (*stdios == NULL)
 	{
 		redirection->filename = node->right_child->cmdstr[0];
 		redirection->re_type = redirect_type(node->left_child);
 		redirection->next_stdio = NULL;
+		*stdios = redirection;
 	}
 	else
 	{
 		redirection->filename = node->right_child->cmdstr[0];
 		redirection->re_type = redirect_type(node->left_child);
 		redirection->next_stdio = NULL;
-		curr = stdios;
+		curr = *stdios;
 		while (curr->next_stdio)
 			curr = curr->next_stdio;
 		curr->next_stdio = redirection;
 	}
-	free(redirection);
 }
 
-void	execute_tree(t_cmd *node, t_stdio *stdios, char **envp)
+void	execute_tree(t_cmd *node, t_stdio **stdios, char **envp)
 {
 	if (node->node_type == NODE_CMD || node->node_type == NODE_REDIRECTS)
 		return ;
 	else if (node->node_type == NODE_PIPE)
-		//execute_pipe(node, envp);
 		;
 	else if (node->node_type == NODE_SIMPLE_CMD)
-		execute_simple_cmd(node, stdios, envp);
+		execute_simple_cmd(node, *stdios, envp);
 	else if (node->node_type == NODE_SIMPLE_REDIRECT)
 		execute_simple_redirect(node, stdios);
 }
@@ -72,7 +71,7 @@ void	search_tree(t_cmd *node, char **envp)
 
 	if (node == NULL)
 		return ;
-	execute_tree(node, stdios, envp);
+	execute_tree(node, &stdios, envp);
 	if (node->left_child && (node->left_child->node_type != NODE_RED_TYPE ||
 		node->left_child->node_type != NODE_FILE_PATH))
 		search_tree(node->left_child, envp);

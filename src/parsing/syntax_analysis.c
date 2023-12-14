@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/12/11 15:44:49 by subpark          ###   ########.fr       */
+/*   Updated: 2023/12/14 16:28:04 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd **node)
 	int	tmp;
 
 	tmp = i[1];
-	*node = generate_tree_node(NODE_REDIRECTS, -1);
+	*node = generate_tree_node(NODE_CMD, -1);
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
@@ -55,13 +55,13 @@ int	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd **node)
 		perror("syntax error near unexpected token");
 		return (-1);
 	}
-	if (syntax_simple_cmd(cmd_line, i, token, &((*node)->left_child)) == -1)
+	if (syntax_simple_cmd(cmd_line, i, token, &((*node)->right_child)) != 1)
 		return (-1);
 	if (redirect_index != -1)
 	{
 		i[0] = redirect_index;
 		i[1] = tmp;
-		return (syntax_redirects(cmd_line, token, i, &((*node)->right_child)));
+		return (syntax_redirects(cmd_line, token, i, &((*node)->left_child)));
 	}
 	return (1);
 }
@@ -105,7 +105,7 @@ int	syntax_simple_redirect(char **cmd_line, /*int *token,*/ int *i, t_cmd **node
 {
 	*node = generate_tree_node(NODE_SIMPLE_REDIRECT, -1);
 	(*node)->left_child = generate_end_node(cmd_line, NODE_RED_TYPE,
-						i[0], i[0]);
+						i[0], i[0] + 1);
 	(*node)->right_child = generate_end_node(cmd_line, NODE_FILE_NAME,
 						i[0] + 1, i[1]);
 	return (1);
