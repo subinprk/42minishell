@@ -6,70 +6,108 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/14 16:43:19 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 06:56:12 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	simple_cmd_action(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+void	update_pipefd(int (*pipefd)[2], int pipe_exist, int old_intput, int new_output)
 {
-	int	builtin;
-
-	if (stdios)
+	if ((*pipefd)[0] == -1)
 	{
-		pipe_stdins(pipefd, stdios);
-		pipe_stdouts(pipefd, stdios);
+		close(old_intput);
+		(*pipefd)[0] = 0;
 	}
-	builtin = check_builtin(cmd->left_child);
-	if (builtin)
-		builtin_action(cmd->right_child, cmd->right_child->cmdstr);
 	else
-		exec(cmd->right_child->cmdstr, envp);
-}
-
-void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
-{
-	pid_t	pid;
-
-	if (pipe(pipefd) == -1)
-		return (perror("Pipe: "));
-	pid = fork();
-	if (pid < 0)
-		return (perror("Fork: "));
-	else if (pid == 0)
+		(*pipefd)[0] = dup2((*pipefd)[0], (*pipefd)[1]);
+	if (pipe_exist != -1)
 	{
-		close(pipefd[0]);
-		dup2(pipefd[1], 1);
-		simple_cmd_action(cmd, pipefd, stdios, envp);
+		close((*pipefd[1]));
+		(*pipefd)[1] = dup2(1, new_output);
 	}
 	else
 	{
-		close(pipefd[1]);
-		dup2(pipefd[0], 0);
-		waitpid(pid, NULL, WNOHANG);
+		(*pipefd)[1] = 1;
+		close(new_output);
 	}
 }
 
-void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+void	update_redirfd(int *pipefd, t_stdio *stdios)
 {
-	pid_t	pid;
+	t_stdio	*last_in;
+	t_stdio *last_out;
+	int		pipe_tmp[2];
 
-	if (pipe(pipefd) == -1)
-		return (perror("Pipe: "));
-	pid = fork();
-	if (pid < 0)
-		return (perror("Fork: "));
-	else if (pid == 0)
+	pipe_tmp[0] = pipefd[0];
+	pipe_tmp[1] = pipefd[1];
+	last_in = find_last_in(stdios);
+	last_out = find_last_out(stdios);
+	if (last_in != NULL)
 	{
-		close(pipefd[0]);
-		close(pipefd[1]);
-		simple_cmd_action(cmd, pipefd, stdios, envp);
+		connect_last_in(pipefd[0], last_in);
+		close(pipe_tmp[0]);
 	}
-	else
+	if (last_out != NULL)
 	{
-		close(pipefd[1]);
-		dup2(pipefd[0], 0);
-		waitpid(pid, NULL, WNOHANG);
+		connect_last_out(pipefd[1], last_out);
+		close(pipe_tmp[1]);
 	}
 }
+
+// void	simple_cmd_action(t_cmd *cmd, int *pipefd, char **envp)
+// {
+// 	int	builtin;
+
+// 	builtin = check_builtin(cmd->left_child);
+// 	if (builtin)
+// 		builtin_action(cmd->right_child, cmd->right_child->cmdstr);
+// 	else
+// 		exec(cmd->right_child->cmdstr, envp);
+// }
+
+// void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+// {
+// 	pid_t	pid;
+
+// 	// if (pipe(pipefd) == -1)
+// 	// 	return (perror("Pipe: "));
+// 	pid = fork();
+// 	if (pid < 0)
+// 		return (perror("Fork: "));
+// 	else if (pid == 0)
+// 	{
+// 		//close(pipefd[0]);
+// 		dup2(pipefd[1], 1);
+// 		simple_cmd_action(cmd, pipefd, stdios, envp);
+// 	}
+// 	else
+// 	{
+// 		//close(pipefd[1]);
+// 		dup2(pipefd[0], 0);
+// 		waitpid(pid, NULL, WNOHANG);
+// 	}
+// }
+
+// void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp)
+// {
+// 	pid_t	pid;
+
+// 	// if (pipe(pipefd) == -1)
+// 	// 	return (perror("Pipe: "));
+// 	pid = fork();
+// 	if (pid < 0)
+// 		return (perror("Fork: "));
+// 	else if (pid == 0)
+// 	{
+// 		//close(pipefd[0]);
+// 		//close(pipefd[1]);
+// 		simple_cmd_action(cmd, pipefd, stdios, envp);
+// 	}
+// 	else
+// 	{
+// 		close(pipefd[1]);
+// 		dup2(pipefd[0], 0);
+// 		waitpid(pid, NULL, WNOHANG);
+// 	}
+// }

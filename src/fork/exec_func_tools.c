@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:05:19 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/03 23:35:19 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/15 15:15:11 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,15 @@ void	exec(char **cmd, char **env)
 	exit (errno);
 }
 
-/*
-if you are comparing only characters
-use single quotes instead of double quotes
-' ' instead of " "
-*/
 int	redirect_type(t_cmd *node)
 {
-	if (ft_strcmp(node->cmdstr[0], "<"))
+	if (ft_strcmp(node->cmdstr[0], "<") == 0)
 		return (REL_TYPE_L);
-	else if (ft_strcmp(node->cmdstr[0], "<<"))
+	else if (ft_strcmp(node->cmdstr[0], "<<") == 0)
 		return (REL_TYPE_LL);
-	else if (ft_strcmp(node->cmdstr[0], ">"))
+	else if (ft_strcmp(node->cmdstr[0], ">") == 0)
 		return (REL_TYPE_R);
-	else if (ft_strcmp(node->cmdstr[0], ">>"))
+	else if (ft_strcmp(node->cmdstr[0], ">>") == 0)
 		return (REL_TYPE_RR);
 	return (0);
 }

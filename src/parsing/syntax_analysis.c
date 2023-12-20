@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:40:29 by siun              #+#    #+#             */
-/*   Updated: 2023/12/14 16:28:04 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/15 14:50:55 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	syntax_cmds(char **cmd_line, int *token, int *i, t_cmd **node)
 	redirect_index = find_redirection(token, i);
 	if (redirect_index != -1)
 		i[1] = redirect_index;
-	if (redirect_index == i[0])
+	/*if (redirect_index == i[0])
 	{
 		perror("syntax error near unexpected token");
 		return (-1);
-	}
+	}*/
 	if (syntax_simple_cmd(cmd_line, i, token, &((*node)->right_child)) != 1)
 		return (-1);
 	if (redirect_index != -1)

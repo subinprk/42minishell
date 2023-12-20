@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/14 17:14:55 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 06:58:30 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,32 @@
 
 void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 {
-	int		pipefd[2];
-	int		builtin;
+	static int		pipefd[2] = {-1, -1};
+	static int		pipe_tmp[2];
+	int				old_input;
+	int				builtin;
+	pid_t			pid;
 
-	builtin = check_builtin(cmd->left_child);
-	if (!builtin)
-		print_error_cmd(cmd->left_child, envp);
-	if (cmd->pipe_exist != -1)
-		pipe_pipe(cmd, pipefd, stdios, envp);
-	else
-		pipe_end(cmd, pipefd, stdios, envp);
+	old_input = dup(pipe_tmp[0]);
+	if (pipe(pipe_tmp) == -1)
+		return (perror("Pipe: "));//exit with signals
+	pid = fork();
+	if (pid < 0)
+		return (perror("Pipe: "));
+	else if (pid == 0)
+	{
+		update_pipefd(&pipefd, cmd->pipe_exist, old_input, pipe_tmp[1]);
+		update_redirfd(pipefd, stdios);//have to thing about 3d pointer
+		builtin = check_builtin(cmd->left_child);
+		if (builtin)
+			builtin_action(cmd->right_child, cmd->right_child->cmdstr);
+		else
+		{
+	 		print_error_cmd(cmd->left_child, envp);
+			exec(cmd->right_child->cmdstr, envp);
+		}
+	}
+	waitpid(pid, NULL, WNOHANG);
 	free_stdios(stdios);
 	stdios = NULL;
 }

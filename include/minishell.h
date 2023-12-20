@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/12 20:26:56 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 05:40:15 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_cmd
 	struct s_cmd	*left_child;
 	struct s_cmd	*right_child;
 	char				**cmdstr;
-//	int					token;
 	int					node_type;
 	int					pipe_exist;
 	int					pre_flag;
@@ -145,8 +144,12 @@ void	pipe_stdouts(int *pipefd, t_stdio *stdios);
 void	print_error_cmd(t_cmd *file_path, char **envp);
 int		check_builtin(t_cmd *file_path);
 void	builtin_action(t_cmd *builtin, char **cmdline);
-void	pipe_pipe(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp);
-void	pipe_end(t_cmd *cmd, int *pipefd, t_stdio *stdios, char **envp);
+void	update_pipefd(int (*pipefd)[2], int pipe_exist, int new_intput, int new_output);
+void	update_redirfd(int *pipefd, t_stdio *stdios);
+t_stdio	*find_last_in(t_stdio *stdios);
+t_stdio	*find_last_out(t_stdio *stdios);
+void	connect_last_out(int pipe_out, t_stdio *last_out);
+void	connect_last_in(int pipe_in, t_stdio *last_in);
 
 //parsing
 char	**chopping_str(char *str);

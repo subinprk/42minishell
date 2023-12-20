@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:54:07 by siun              #+#    #+#             */
-/*   Updated: 2023/12/14 17:00:40 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 05:57:29 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,30 @@ void	heredoc_input(int filefd, char *word)
 	free(line);
 }
 
-void	re_type_l_pipes(int filefd, int *pipefd)
+void	re_type_l_pipes(int filefd, int pipe_in)
 {	
-	int	fd;
+	int	fd_tmp;
 
-	fd = dup2(filefd, pipefd[0]);
-	if (fd == -1)
+	fd_tmp = dup2(pipe_in, filefd);//
+	if (fd_tmp == -1)
 	{
 		close(filefd);
-		close(pipefd[0]);
+		close(pipe_in);
 		exit(errno);
 	}
 }
 
-void	connect_stdins(t_stdio *last_in, int *pipefd)
+void	connect_last_in(int pipe_in, t_stdio *last_in)
 {
 	int	filefd;
 
 	filefd = -1;
-
 	if (last_in->re_type == REL_TYPE_L)
 	{
 		filefd = open(last_in->filename, O_RDONLY);
 		if (!filefd)
 			exit(errno);
-		re_type_l_pipes(filefd, pipefd);
+		re_type_l_pipes(filefd, pipe_in);
 	}
 	else if (last_in->re_type == REL_TYPE_LL)//have to make heredoc
 	{
@@ -61,13 +60,13 @@ void	connect_stdins(t_stdio *last_in, int *pipefd)
 		if (!filefd)
 			exit(errno);
 		heredoc_input(filefd, last_in->filename);
-		re_type_l_pipes(filefd, pipefd);///have to remove tmp file, have to think about it later
+		re_type_l_pipes(filefd, pipe_in);///have to remove tmp file, have to think about it later
 	}
 	if (filefd != -1)
 		close(filefd);
 }
 
-void	pipe_stdins(int *pipefd, t_stdio *stdios)
+t_stdio	*find_last_in(t_stdio *stdios)
 {
 	t_stdio	*last_in;
 	t_stdio	*curr;
@@ -80,8 +79,24 @@ void	pipe_stdins(int *pipefd, t_stdio *stdios)
 			last_in = curr;
 		curr = curr->next_stdio;
 	}
-	if (last_in != NULL)
-		connect_stdins(last_in, pipefd);
-	if (pipefd != NULL)
-		return ;//useless, but afraid to remove pipefd parameter...
+	return (last_in);
 }
+
+// void	pipe_stdins(int *pipefd, t_stdio *stdios)
+// {
+// 	t_stdio	*last_in;
+// 	t_stdio	*curr;
+
+// 	last_in = NULL;
+// 	curr = stdios;
+// 	while (curr)
+// 	{
+// 		if (curr->re_type == REL_TYPE_L || curr->re_type == REL_TYPE_LL)
+// 			last_in = curr;
+// 		curr = curr->next_stdio;
+// 	}
+// 	if (last_in != NULL)
+// 		connect_stdins(last_in, pipefd);
+// 	else
+// 		return ;//useless, but afraid to remove pipefd parameter...
+// }
