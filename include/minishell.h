@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:52:41 by irivero-          #+#    #+#             */
-/*   Updated: 2023/12/20 07:28:49 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 16:19:59 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ t_stdio	*find_last_in(t_stdio *stdios);
 t_stdio	*find_last_out(t_stdio *stdios);
 void	connect_last_out(int pipe_out, t_stdio *last_out);
 void	connect_last_in(int pipe_in, t_stdio *last_in);
+void	write_pipefd(int (*pipefd)[2], int pipe_exist, int old_pipe[2], int new_pipe[2]);
 
 //parsing
 char	**chopping_str(char *str);

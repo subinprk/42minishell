@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/20 07:21:30 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 16:19:48 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ if (pipefd[0] != -1) ///for excepting the case of first time
 		}
 	}
 	waitpid(pid, NULL, WNOHANG);
+	write_pipefd(&pipefd, cmd->pipe_exist, old_pipe, new_pipe);
 	free_stdios(stdios);
 	stdios = NULL;
 }
