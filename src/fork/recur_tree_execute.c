@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/20 06:58:30 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 07:21:30 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,23 @@
 void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 {
 	static int		pipefd[2] = {-1, -1};
-	static int		pipe_tmp[2];
-	int				old_input;
+	static int		new_pipe[2];
+	int				old_pipe[2];
 	int				builtin;
 	pid_t			pid;
-
-	old_input = dup(pipe_tmp[0]);
-	if (pipe(pipe_tmp) == -1)
+if (pipefd[0] != -1) ///for excepting the case of first time
+	{
+		old_pipe[0] = new_pipe[0];
+		old_pipe[1] = new_pipe[1];
+	}
+	if (pipe(new_pipe) == -1)
 		return (perror("Pipe: "));//exit with signals
 	pid = fork();
 	if (pid < 0)
 		return (perror("Pipe: "));
 	else if (pid == 0)
 	{
-		update_pipefd(&pipefd, cmd->pipe_exist, old_input, pipe_tmp[1]);
+		update_pipefd(&pipefd, cmd->pipe_exist, old_pipe, new_pipe);
 		update_redirfd(pipefd, stdios);//have to thing about 3d pointer
 		builtin = check_builtin(cmd->left_child);
 		if (builtin)
