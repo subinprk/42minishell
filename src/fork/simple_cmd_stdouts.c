@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 01:07:41 by siun              #+#    #+#             */
-/*   Updated: 2023/12/20 05:57:27 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 17:48:25 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	re_type_r_pipes(int filefd, int pipe_out)
 {
 	int	fd_tmp;
 
-	fd_tmp = dup2(pipe_out, filefd);
+	fd_tmp = dup2(filefd, pipe_out);
 	if (fd_tmp == -1)
 	{
 		close(pipe_out);

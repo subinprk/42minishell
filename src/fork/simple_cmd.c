@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 21:07:25 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/20 16:23:05 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 17:40:20 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	update_pipefd(int (*pipefd)[2], int pipe_exist, int old_pipe[2], int new_pi
 {
 	if ((*pipefd)[0] == -1)
 	{
-		//(*pipefd)[0] = dup(0);
 		(*pipefd)[0] = 0;
-		close(old_pipe[0]);
 	}
 	else
 	{
 		(*pipefd)[0] = old_pipe[0];
 		dup2(old_pipe[0], 0);
+		close(old_pipe[1]);
 	}
 	if (pipe_exist != -1)
 	{
@@ -44,11 +43,9 @@ void	update_pipefd(int (*pipefd)[2], int pipe_exist, int old_pipe[2], int new_pi
 	}
 	else
 	{
-		//(*pipefd)[1] = dup(1);
 		(*pipefd)[1] = 1;
 		close(new_pipe[1]);
 	}
-	close(old_pipe[1]);
 	close(new_pipe[0]);
 }
 

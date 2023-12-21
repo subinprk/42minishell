@@ -6,7 +6,7 @@
 /*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 20:53:44 by subpark           #+#    #+#             */
-/*   Updated: 2023/12/20 16:19:48 by siun             ###   ########.fr       */
+/*   Updated: 2023/12/20 18:01:45 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	execute_simple_cmd(t_cmd *cmd, t_stdio *stdios, char **envp)
 	int				old_pipe[2];
 	int				builtin;
 	pid_t			pid;
-if (pipefd[0] != -1) ///for excepting the case of first time
+
+	if (pipefd[0] != -1) ///for excepting the case of first time
 	{
 		old_pipe[0] = new_pipe[0];
 		old_pipe[1] = new_pipe[1];
@@ -32,7 +33,7 @@ if (pipefd[0] != -1) ///for excepting the case of first time
 	else if (pid == 0)
 	{
 		update_pipefd(&pipefd, cmd->pipe_exist, old_pipe, new_pipe);
-		update_redirfd(pipefd, stdios);//have to thing about 3d pointer
+		update_redirfd(pipefd, stdios);
 		builtin = check_builtin(cmd->left_child);
 		if (builtin)
 			builtin_action(cmd->right_child, cmd->right_child->cmdstr);
